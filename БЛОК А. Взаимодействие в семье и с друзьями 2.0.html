@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Тема А. Взаимодействие в семье и с друзьями</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+  body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+  .container { max-width: 1200px; margin: 0 auto; background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+  header { background: linear-gradient(135deg, #ff6b9d 0%, #c86dd7 50%, #4a90e2 100%); padding: 30px 20px; text-align: center; color: #fff; }
+  header h1 { font-size: 2em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+  header p { opacity: 0.95; font-size: 1.05em; }
+  .tabs { display: flex; flex-wrap: wrap; background: #f8f9ff; border-bottom: 3px solid #c86dd7; }
+  .tab { flex: 1; min-width: 110px; padding: 15px 10px; text-align: center; cursor: pointer; font-weight: 700; color: #4a3f8f; transition: all 0.3s; border-bottom: 4px solid transparent; font-size: 0.9em; }
+  .tab:hover { background: #ede7ff; }
+  .tab.active { background: linear-gradient(135deg, #ff6b9d, #c86dd7); color: #fff; border-bottom-color: #ffd93d; border-radius: 8px 8px 0 0; }
+  .tab-content { display: none; padding: 30px; animation: fadeIn 0.4s; }
+  .tab-content.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .section { background: linear-gradient(135deg, #fff8f0, #fef6ff); border-radius: 15px; padding: 25px; margin-bottom: 25px; border-left: 6px solid #ff6b9d; box-shadow: 0 4px 15px rgba(200, 109, 215, 0.1); }
+  .section h2 { color: #4a3f8f; margin-bottom: 15px; font-size: 1.5em; display: flex; align-items: center; gap: 10px; }
+  .section h3 { color: #c86dd7; margin: 15px 0 10px; font-size: 1.2em; }
+  .section p, .section li { color: #333; line-height: 1.6; }
+  .word-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; margin-top: 15px; }
+  .word-card { background: #fff; padding: 10px 15px; border-radius: 10px; border-left: 4px solid #4a90e2; box-shadow: 0 2px 8px rgba(74, 144, 226, 0.15); transition: transform 0.2s; }
+  .word-card:hover { transform: translateX(5px); }
+  .word-card .en { font-weight: 700; color: #2d1b69; }
+  .word-card .ru { color: #666; font-size: 0.9em; }
+  .quizlet-btn { display: inline-block; margin-top: 15px; padding: 12px 25px; background: linear-gradient(135deg, #4a90e2, #c86dd7); color: #fff; text-decoration: none; border-radius: 30px; font-weight: 700; box-shadow: 0 4px 15px rgba(200, 109, 215, 0.4); transition: transform 0.2s; }
+  .quizlet-btn:hover { transform: scale(1.05); }
+  .media-block { margin: 15px 0; padding: 12px; background: #fff; border-radius: 12px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); border-left: 4px solid #4a90e2; }
+  .media-block .media-label { font-weight: 700; color: #4a3f8f; margin-bottom: 8px; font-size: 0.95em; }
+  .media-block iframe { width: 100%; border: none; border-radius: 8px; background: #f0f4ff; }
+  .media-block.audio iframe { height: 80px; }
+  .media-block.video iframe { height: 380px; }
+  .reading-text { background: #fffdf5; padding: 20px; border-radius: 12px; font-size: 1.05em; line-height: 1.8; cursor: text; user-select: text; position: relative; }
+  .reading-text p { margin-bottom: 12px; position: relative; padding-left: 30px; }
+  .reading-text p::before { content: attr(data-num); position: absolute; left: 0; top: 0; background: linear-gradient(135deg, #ff6b9d, #c86dd7); color: #fff; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75em; font-weight: 700; }
+  .reading-text .word { cursor: pointer; padding: 0 1px; border-radius: 3px; transition: background 0.15s; }
+  .reading-text .word:hover { background: #f0f4ff; }
+  .reading-text .word.hl-yellow { background: #ffe066; }
+  .reading-text .word.hl-green { background: #b2f2bb; }
+  .reading-text .word.hl-pink { background: #ffc9de; }
+  .reading-text .word.hl-blue { background: #a5d8ff; }
+  .highlight-tools { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; align-items: center; }
+  .hl-btn { width: 30px; height: 30px; border-radius: 50%; border: 2px solid #fff; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.15); transition: transform 0.2s; }
+  .hl-btn:hover { transform: scale(1.15); }
+  .hl-btn.y { background: #ffe066; }
+  .hl-btn.g { background: #b2f2bb; }
+  .hl-btn.p { background: #ffc9de; }
+  .hl-btn.b { background: #a5d8ff; }
+  .headings-bank { display: flex; flex-wrap: wrap; gap: 10px; padding: 15px; background: linear-gradient(135deg, #f0eeff, #f5eaff); border-radius: 12px; margin: 15px 0; border: 2px dashed #a29bfe; min-height: 60px; }
+  .heading-chip { background: linear-gradient(135deg, #ff6b9d, #c86dd7); color: #fff; padding: 8px 15px; border-radius: 20px; cursor: grab; font-size: 0.9em; font-weight: 600; box-shadow: 0 3px 10px rgba(200,109,215,0.3); transition: transform 0.2s; user-select: none; }
+  .heading-chip:active { cursor: grabbing; transform: scale(0.95); }
+  .heading-chip.dragging { opacity: 0.5; }
+  .drop-zone { display: inline-block; min-width: 150px; padding: 6px 12px; margin-left: 8px; border: 2px dashed #c86dd7; border-radius: 8px; background: #f8f9ff; font-size: 0.85em; color: #999; text-align: center; transition: all 0.2s; vertical-align: middle; }
+  .drop-zone.over { background: #ffe8f0; border-color: #ff6b9d; transform: scale(1.05); }
+  .drop-zone.filled { background: linear-gradient(135deg, #f0eeff, #f5eaff); border-style: solid; border-color: #a29bfe; color: #b8b0d8; font-style: italic; opacity: 0.55; font-weight: 600; }
+  .tfns-item { background: #fff; padding: 15px; border-radius: 10px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .tfns-options { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .tfns-btn { padding: 8px 18px; border: 2px solid #c86dd7; background: #fff; color: #4a3f8f; border-radius: 20px; cursor: pointer; font-weight: 700; transition: all 0.2s; }
+  .tfns-btn:hover { background: #f5eaff; }
+  .tfns-btn.selected { background: linear-gradient(135deg, #ff6b9d, #c86dd7); color: #fff; border-color: #c86dd7; }
+  .match-item { display: flex; align-items: center; gap: 12px; background: #fff; padding: 12px 15px; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .match-item label { font-weight: 700; color: #4a3f8f; min-width: 110px; }
+  .match-item select { flex: 1; padding: 8px 12px; border: 2px solid #c86dd7; border-radius: 8px; font-size: 1em; background: #fff; cursor: pointer; }
+  .question-list { list-style: none; padding-left: 0; }
+  .question-list li { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; margin-bottom: 8px; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); line-height: 1.5; color: #333; transition: background 0.2s; }
+  .question-list li.done { background: linear-gradient(135deg, #e0ffe0, #f0fff5); text-decoration: line-through; color: #4a7a4a; }
+  .qmark { font-size: 1.3em; cursor: pointer; user-select: none; transition: transform 0.2s; flex-shrink: 0; line-height: 1.2; }
+  .qmark:hover { transform: scale(1.2); }
+  .fill-input { padding: 8px 12px; border: 2px solid #4a90e2; border-radius: 8px; font-size: 1em; background: #f8f9ff; outline: none; min-width: 120px; font-weight: 600; color: #2d1b69; transition: all 0.2s; }
+  .fill-input:focus { background: #fff; box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2); }
+  .exercise-item { background: #fff; padding: 15px; border-radius: 10px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); line-height: 2; }
+  .mc-btn { display: inline-block; padding: 6px 14px; margin: 0 4px; border: 2px solid #4a90e2; background: #fff; color: #4a3f8f; border-radius: 15px; cursor: pointer; font-weight: 600; transition: all 0.2s; }
+  .mc-btn:hover { background: #e6f0ff; }
+  .mc-btn.selected { background: linear-gradient(135deg, #4a90e2, #c86dd7); color: #fff; }
+  .grammar-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #f5eaff, #e6f0ff); border-radius: 12px; }
+  .grammar-nav button { padding: 8px 15px; background: #fff; border: 2px solid #c86dd7; color: #4a3f8f; border-radius: 20px; cursor: pointer; font-weight: 700; font-size: 0.85em; transition: all 0.2s; }
+  .grammar-nav button:hover { background: #f5eaff; }
+  .grammar-nav button.active { background: linear-gradient(135deg, #ff6b9d, #c86dd7); color: #fff; }
+  .grammar-rule { display: none; }
+  .grammar-rule.active { display: block; }
+  .rule-block { background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(200, 109, 215, 0.15); border-top: 5px solid #ff6b9d; }
+  .rule-block .rule { background: linear-gradient(135deg, #fff5e6, #ffe8f0); padding: 15px; border-radius: 10px; border-left: 5px solid #ffb347; margin-bottom: 15px; }
+  .example { background: #f0f9ff; padding: 10px 15px; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #4a90e2; }
+  .example .en { font-weight: 700; color: #2d1b69; }
+  .example .ru { color: #666; font-size: 0.92em; }
+  .sub-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .sub-tab { padding: 10px 20px; background: #fff; border: 2px solid #c86dd7; color: #4a3f8f; border-radius: 25px; cursor: pointer; font-weight: 700; transition: all 0.2s; }
+  .sub-tab.active { background: linear-gradient(135deg, #ff6b9d, #c86dd7); color: #fff; }
+  .sub-content { display: none; }
+  .sub-content.active { display: block; animation: fadeIn 0.4s; }
+  .role-card { background: #fff; border-radius: 15px; padding: 20px; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(200, 109, 215, 0.2); border-top: 6px solid #c86dd7; }
+  .role-card h4 { color: #ff6b9d; margin-bottom: 10px; font-size: 1.1em; }
+  .role-card ul { list-style: none; padding-left: 0; }
+  .role-card ul li { padding: 6px 0; padding-left: 25px; position: relative; font-style: italic; color: #4a3f8f; }
+  .role-card ul li::before { content: '💬'; position: absolute; left: 0; }
+  .wheel-container { display: flex; align-items: center; justify-content: center; gap: 30px; flex-wrap: wrap; margin: 20px 0; }
+  .wheel-wrapper { position: relative; width: 420px; height: 420px; flex-shrink: 0; }
+  .wheel-svg { width: 100%; height: 100%; transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99); }
+  .wheel-pointer { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-top: 40px solid #ff6b9d; z-index: 10; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
+  .spin-btn { display: block; margin: 0 auto; padding: 15px 50px; background: linear-gradient(135deg, #ff6b9d, #c86dd7); color: #fff; border: none; border-radius: 40px; font-size: 1.2em; font-weight: 900; cursor: pointer; box-shadow: 0 6px 20px rgba(200,109,215,0.4); transition: transform 0.2s; letter-spacing: 2px; }
+  .spin-btn:hover { transform: scale(1.05); }
+  .spin-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .question-display { min-height: 100px; background: linear-gradient(135deg, #fff5e6, #ffe8f0); padding: 25px; border-radius: 15px; margin: 20px 0; text-align: center; font-size: 1.4em; font-weight: 700; color: #2d1b69; display: flex; align-items: center; justify-content: center; border: 3px dashed #ff6b9d; transition: all 0.4s; opacity: 0; transform: scale(0.8); }
+  .question-display.show { opacity: 1; transform: scale(1); animation: pulse 0.5s; }
+  @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+  .mono-card { background: linear-gradient(135deg, #ffe8f0, #f5eaff); padding: 20px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(200, 109, 215, 0.15); border-left: 6px solid #ff6b9d; }
+  .mono-card h4 { color: #c86dd7; margin-bottom: 10px; }
+  .notes-area { width: 100%; min-height: 100px; padding: 12px; border: 2px dashed #c86dd7; border-radius: 10px; background: #fff; font-family: inherit; font-size: 0.95em; margin-top: 10px; resize: vertical; outline: none; }
+  .notes-area:focus { border-color: #ff6b9d; box-shadow: 0 0 0 3px rgba(255,107,157,0.15); }
+  .email-card { background: linear-gradient(135deg, #f0f9ff, #f5eaff); padding: 20px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(74, 144, 226, 0.15); border-left: 6px solid #4a90e2; }
+  .email-card .email-header { background: #fff; padding: 10px 15px; border-radius: 8px; font-size: 0.9em; color: #666; margin-bottom: 12px; border: 1px dashed #4a90e2; }
+  .email-card .email-header strong { color: #2d1b69; }
+  .cl-header { text-align: center; padding: 25px 15px; background: linear-gradient(135deg, #ffe8f0, #f5eaff, #e6f0ff); border-radius: 15px; margin-bottom: 20px; border: 3px dashed #c86dd7; }
+  .cl-header .emojis { font-size: 1.5em; letter-spacing: 5px; margin-bottom: 8px; }
+  .cl-header h2 { font-size: 1.8em; background: linear-gradient(90deg, #ff6b9d, #c86dd7, #4a90e2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 900; }
+  .cl-header .sub { color: #6b5b95; margin-top: 8px; font-size: 0.95em; font-weight: 600; }
+  .cl-section { border-radius: 14px; padding: 18px 20px; margin-bottom: 18px; border: 2px dashed; }
+  .cl-section.lex { border-color: #ffb347; background: linear-gradient(120deg, #fff5e6, #fff); }
+  .cl-section.listen { border-color: #7ed6df; background: linear-gradient(120deg, #e8f9fb, #fff); }
+  .cl-section.read { border-color: #a29bfe; background: linear-gradient(120deg, #f0eeff, #fff); }
+  .cl-section.speak { border-color: #ff7675; background: linear-gradient(120deg, #fff0f0, #fff); }
+  .cl-section.write { border-color: #55efc4; background: linear-gradient(120deg, #eafff7, #fff); }
+  .cl-section.gram { border-color: #fd79a8; background: linear-gradient(120deg, #fff0f6, #fff); }
+  .cl-section h3 { color: #2d1b69; font-size: 1.15em; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .cl-item { display: flex; align-items: flex-start; gap: 10px; padding: 7px 10px; margin-bottom: 6px; background: rgba(255,255,255,0.7); border-radius: 8px; font-size: 0.95em; color: #2c2c54; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+  .cl-item:hover { background: #fff; }
+  .cl-item.done { background: linear-gradient(135deg, #e0ffe0, #f0fff5); color: #4a7a4a; }
+  .cl-item .mark { font-size: 1.2em; flex-shrink: 0; line-height: 1.2; user-select: none; transition: transform 0.2s; }
+  .cl-item:hover .mark { transform: scale(1.2); }
+  .cl-gram-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 15px; }
+  .cl-finish { margin-top: 20px; padding: 20px; border-radius: 14px; text-align: center; background: linear-gradient(90deg, #ffecd2 0%, #fcb69f 50%, #ff9a9e 100%); box-shadow: 0 4px 15px rgba(255, 118, 117, 0.3); }
+  .cl-finish .top { font-size: 1.15em; font-weight: 900; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.15); }
+  .cl-finish .bottom { font-size: 0.95em; color: #7a3b2e; margin-top: 8px; font-weight: 700; }
+  .read-aloud-section { background: linear-gradient(135deg, #e6f0ff, #f0f9ff); border-left: 6px solid #4a90e2; padding: 25px; border-radius: 15px; margin-top: 30px; box-shadow: 0 6px 20px rgba(74,144,226,0.15); }
+  .timer-panel { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 20px 0; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); }
+  .timer-block { text-align: center; padding: 15px 25px; background: linear-gradient(135deg, #f5eaff, #e6f0ff); border-radius: 12px; min-width: 200px; }
+  .timer-block .timer-label { font-weight: 700; color: #4a3f8f; margin-bottom: 8px; font-size: 0.9em; }
+  .timer-display { font-size: 2.5em; font-weight: 900; background: linear-gradient(135deg, #ff6b9d, #c86dd7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-variant-numeric: tabular-nums; margin: 8px 0; letter-spacing: 2px; }
+  .timer-btns { display: flex; gap: 8px; justify-content: center; margin-top: 10px; }
+  .timer-btn { padding: 8px 18px; border: none; border-radius: 20px; font-weight: 700; cursor: pointer; font-size: 0.85em; transition: transform 0.2s; }
+  .timer-btn.start { background: linear-gradient(135deg, #55efc4, #00b894); color: #fff; }
+  .timer-btn.reset { background: linear-gradient(135deg, #fd79a8, #e84393); color: #fff; }
+  .timer-btn:hover { transform: scale(1.05); }
+  .read-text-block { background: #fff; padding: 18px; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 3px 10px rgba(0,0,0,0.06); line-height: 1.8; border-left: 5px solid #4a90e2; }
+  .read-text-block h4 { color: #4a3f8f; margin-bottom: 10px; font-size: 1em; }
+  .hw-sub-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .hw-sub-tab { padding: 10px 20px; background: #fff; border: 2px solid #4a90e2; color: #4a3f8f; border-radius: 25px; cursor: pointer; font-weight: 700; transition: all 0.2s; }
+  .hw-sub-tab.active { background: linear-gradient(135deg, #4a90e2, #c86dd7); color: #fff; }
+  .hw-content { display: none; }
+  .hw-content.active { display: block; animation: fadeIn 0.4s; }
+  footer { text-align: center; padding: 20px; color: #fff; font-size: 0.9em; margin-top: 20px; }
+  .text-area-answer { width: 100%; min-height: 120px; padding: 12px; border: 2px solid #4a90e2; border-radius: 10px; background: #f8f9ff; font-family: inherit; font-size: 0.95em; resize: vertical; outline: none; transition: all 0.2s; }
+  .text-area-answer:focus { background: #fff; box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2); }
+  .answer-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+  .answer-table th, .answer-table td { border: 2px solid #c86dd7; padding: 10px; text-align: center; background: #fff; }
+  .answer-table th { background: #f5eaff; color: #4a3f8f; font-weight: 700; }
+  .answer-table input { width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 6px; text-align: center; font-weight: 700; color: #2d1b69; }
+  .reading-block { background: #fff; padding: 18px; border-radius: 12px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); line-height: 1.8; border-left: 4px solid #a29bfe; }
+  .reading-block p { margin-bottom: 12px; }
+  .reading-block p:last-child { margin-bottom: 0; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <h1>🌟 Тема А. Взаимодействие в семье и с друзьями 🌟</h1>
+    <p>💫 Интерактивный курс подготовки к ОГЭ по английскому языку 💫</p>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="home">🏠 Главная</div>
+    <div class="tab" data-tab="vocab">📚 Лексика</div>
+    <div class="tab" data-tab="listening">🎧 Аудирование</div>
+    <div class="tab" data-tab="reading">📖 Чтение</div>
+    <div class="tab" data-tab="speaking">🎭 Говорение</div>
+    <div class="tab" data-tab="grammar">📝 Грамматика</div>
+    <div class="tab" data-tab="wordbuilding">🧩 Словообразование</div>
+    <div class="tab" data-tab="writing">✉️ Письмо</div>
+    <div class="tab" data-tab="checklist">✅ Чек-лист</div>
+    <div class="tab" data-tab="homework">📂 Домашка</div>
+  </div>
+
+  <!-- HOME -->
+  <div class="tab-content active" id="home">
+    <div class="section">
+      <h2>🗺️ План блока</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-top: 15px;">
+        <div style="background:#fff; padding:15px; border-radius:12px; text-align:center; box-shadow:0 3px 10px rgba(0,0,0,0.08); border-top:4px solid #4a90e2; font-weight:700; color:#4a3f8f;">1️⃣ Лексика</div>
+        <div style="background:#fff; padding:15px; border-radius:12px; text-align:center; box-shadow:0 3px 10px rgba(0,0,0,0.08); border-top:4px solid #4a90e2; font-weight:700; color:#4a3f8f;">2️⃣ Аудирование</div>
+        <div style="background:#fff; padding:15px; border-radius:12px; text-align:center; box-shadow:0 3px 10px rgba(0,0,0,0.08); border-top:4px solid #4a90e2; font-weight:700; color:#4a3f8f;">3️⃣ Чтение</div>
+        <div style="background:#fff; padding:15px; border-radius:12px; text-align:center; box-shadow:0 3px 10px rgba(0,0,0,0.08); border-top:4px solid #4a90e2; font-weight:700; color:#4a3f8f;">4️⃣ Говорение</div>
+        <div style="background:#fff; padding:15px; border-radius:12px; text-align:center; box-shadow:0 3px 10px rgba(0,0,0,0.08); border-top:4px solid #4a90e2; font-weight:700; color:#4a3f8f;">5️⃣ Грамматика</div>
+        <div style="background:#fff; padding:15px; border-radius:12px; text-align:center; box-shadow:0 3px 10px rgba(0,0,0,0.08); border-top:4px solid #4a90e2; font-weight:700; color:#4a3f8f;">6️⃣ Словообразование</div>
+        <div style="background:#fff; padding:15px; border-radius:12px; text-align:center; box-shadow:0 3px 10px rgba(0,0,0,0.08); border-top:4px solid #4a90e2; font-weight:700; color:#4a3f8f;">7️⃣ Письмо</div>
+      </div>
+    </div>
+    <div class="section" style="border-left-color: #4a90e2;">
+      <h2>📖 Источники</h2>
+      <ul style="padding-left: 20px; line-height: 2;">
+        <li>📘 Prepare Intermediate B1 (level 4), 2nd edition, Cambridge</li>
+        <li>📗 Prepare Intermediate-Plus B1+ (level 5), 2nd edition, Cambridge</li>
+        <li>📙 English Vocabulary In Use A2-B1</li>
+        <li>📕 English Grammar In Use A2-B1</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- VOCABULARY -->
+  <div class="tab-content" id="vocab">
+    <div class="section">
+      <h2>📚 Активная лексика блока</h2>
+
+      <h3>🔹 Существительные</h3>
+      <div class="word-grid">
+        <div class="word-card"><div class="en">relationship</div><div class="ru">отношения; связь</div></div>
+        <div class="word-card"><div class="en">argument</div><div class="ru">спор, ссора</div></div>
+        <div class="word-card"><div class="en">conflict</div><div class="ru">конфликт</div></div>
+        <div class="word-card"><div class="en">solution</div><div class="ru">решение (проблемы)</div></div>
+        <div class="word-card"><div class="en">chore / household chore</div><div class="ru">домашняя обязанность</div></div>
+        <div class="word-card"><div class="en">celebration</div><div class="ru">празднование</div></div>
+        <div class="word-card"><div class="en">tradition</div><div class="ru">традиция</div></div>
+        <div class="word-card"><div class="en">relative</div><div class="ru">родственник</div></div>
+        <div class="word-card"><div class="en">couple</div><div class="ru">пара (о людях)</div></div>
+        <div class="word-card"><div class="en">generation</div><div class="ru">поколение</div></div>
+        <div class="word-card"><div class="en">character</div><div class="ru">характер</div></div>
+        <div class="word-card"><div class="en">friendship 🔄</div><div class="ru">дружба</div></div>
+        <div class="word-card"><div class="en">support</div><div class="ru">поддержка</div></div>
+        <div class="word-card"><div class="en">trust</div><div class="ru">доверие</div></div>
+        <div class="word-card"><div class="en">respect</div><div class="ru">уважение</div></div>
+        <div class="word-card"><div class="en">behaviour 🔄</div><div class="ru">поведение</div></div>
+        <div class="word-card"><div class="en">apology 🔄</div><div class="ru">извинение</div></div>
+        <div class="word-card"><div class="en">cousin</div><div class="ru">двоюродный брат / сестра</div></div>
+        <div class="word-card"><div class="en">neighbour</div><div class="ru">сосед</div></div>
+        <div class="word-card"><div class="en">twin</div><div class="ru">близнец</div></div>
+      </div>
+
+      <h3>🔹 Прилагательные</h3>
+      <div class="word-grid">
+        <div class="word-card"><div class="en">reliable 🔄</div><div class="ru">надёжный</div></div>
+        <div class="word-card"><div class="en">unreliable 🔄</div><div class="ru">ненадёжный</div></div>
+        <div class="word-card"><div class="en">caring</div><div class="ru">заботливый</div></div>
+        <div class="word-card"><div class="en">honest 🔄</div><div class="ru">честный</div></div>
+        <div class="word-card"><div class="en">dishonest 🔄</div><div class="ru">нечестный</div></div>
+        <div class="word-card"><div class="en">patient 🔄</div><div class="ru">терпеливый</div></div>
+        <div class="word-card"><div class="en">impatient 🔄</div><div class="ru">нетерпеливый</div></div>
+        <div class="word-card"><div class="en">sociable</div><div class="ru">общительный</div></div>
+        <div class="word-card"><div class="en">shy</div><div class="ru">застенчивый</div></div>
+        <div class="word-card"><div class="en">cheerful 🔄</div><div class="ru">жизнерадостный</div></div>
+        <div class="word-card"><div class="en">grumpy</div><div class="ru">угрюмый, ворчливый</div></div>
+        <div class="word-card"><div class="en">strict</div><div class="ru">строгий</div></div>
+        <div class="word-card"><div class="en">easy-going</div><div class="ru">мягкий, неформальный</div></div>
+        <div class="word-card"><div class="en">generous 🔄</div><div class="ru">щедрый</div></div>
+        <div class="word-card"><div class="en">selfish</div><div class="ru">эгоистичный</div></div>
+        <div class="word-card"><div class="en">sensitive</div><div class="ru">чувствительный</div></div>
+        <div class="word-card"><div class="en">jealous</div><div class="ru">ревнивый, завистливый</div></div>
+        <div class="word-card"><div class="en">annoyed 🔄</div><div class="ru">раздражённый</div></div>
+      </div>
+
+      <h3>🔹 Глаголы и фразовые глаголы</h3>
+      <div class="word-grid">
+        <div class="word-card"><div class="en">argue</div><div class="ru">спорить, ссориться</div></div>
+        <div class="word-card"><div class="en">chat</div><div class="ru">болтать, общаться</div></div>
+        <div class="word-card"><div class="en">support</div><div class="ru">поддерживать</div></div>
+        <div class="word-card"><div class="en">trust</div><div class="ru">доверять</div></div>
+        <div class="word-card"><div class="en">respect</div><div class="ru">уважать</div></div>
+        <div class="word-card"><div class="en">forgive 🔄</div><div class="ru">прощать</div></div>
+        <div class="word-card"><div class="en">celebrate 🔄</div><div class="ru">праздновать</div></div>
+        <div class="word-card"><div class="en">apologize 🔄</div><div class="ru">извиняться</div></div>
+        <div class="word-card"><div class="en">admire</div><div class="ru">восхищаться</div></div>
+        <div class="word-card"><div class="en">annoy</div><div class="ru">раздражать</div></div>
+        <div class="word-card"><div class="en">prefer</div><div class="ru">предпочитать</div></div>
+        <div class="word-card"><div class="en">share</div><div class="ru">делиться</div></div>
+        <div class="word-card"><div class="en">realize 🔄</div><div class="ru">осознавать</div></div>
+        <div class="word-card"><div class="en">get on (with)</div><div class="ru">ладить (с кем-л.)</div></div>
+        <div class="word-card"><div class="en">fall out (with)</div><div class="ru">поссориться (с кем-л.)</div></div>
+        <div class="word-card"><div class="en">make up (with)</div><div class="ru">помириться (с кем-л.)</div></div>
+        <div class="word-card"><div class="en">look after</div><div class="ru">заботиться, присматривать</div></div>
+        <div class="word-card"><div class="en">bring up</div><div class="ru">воспитывать</div></div>
+      </div>
+
+      <h3>🔹 Наречия</h3>
+      <div class="word-grid">
+        <div class="word-card"><div class="en">carefully 🔄</div><div class="ru">внимательно, осторожно</div></div>
+        <div class="word-card"><div class="en">politely 🔄</div><div class="ru">вежливо</div></div>
+        <div class="word-card"><div class="en">rudely 🔄</div><div class="ru">грубо</div></div>
+        <div class="word-card"><div class="en">seriously 🔄</div><div class="ru">серьёзно</div></div>
+        <div class="word-card"><div class="en">happily 🔄</div><div class="ru">счастливо</div></div>
+        <div class="word-card"><div class="en">luckily 🔄</div><div class="ru">к счастью</div></div>
+        <div class="word-card"><div class="en">unfortunately 🔄</div><div class="ru">к сожалению</div></div>
+      </div>
+
+      <h3>🔹 Фразы и устойчивые выражения</h3>
+      <div class="word-grid">
+        <div class="word-card"><div class="en">get on well with someone</div><div class="ru">хорошо ладить с кем-л.</div></div>
+        <div class="word-card"><div class="en">have a lot in common</div><div class="ru">иметь много общего</div></div>
+        <div class="word-card"><div class="en">keep in touch</div><div class="ru">поддерживать связь</div></div>
+        <div class="word-card"><div class="en">fall out with someone</div><div class="ru">поссориться с кем-л.</div></div>
+        <div class="word-card"><div class="en">make up with someone</div><div class="ru">помириться с кем-л.</div></div>
+        <div class="word-card"><div class="en">look after someone</div><div class="ru">заботиться о ком-л.</div></div>
+        <div class="word-card"><div class="en">spend time with someone</div><div class="ru">проводить время с кем-л.</div></div>
+        <div class="word-card"><div class="en">have an argument</div><div class="ru">поссориться, поспорить</div></div>
+        <div class="word-card"><div class="en">resolve a conflict</div><div class="ru">разрешить конфликт</div></div>
+        <div class="word-card"><div class="en">do one's fair share</div><div class="ru">выполнять свою часть обязанностей</div></div>
+        <div class="word-card"><div class="en">take turns doing something</div><div class="ru">делать что-то по очереди</div></div>
+        <div class="word-card"><div class="en">feel lonely</div><div class="ru">чувствовать себя одиноким</div></div>
+        <div class="word-card"><div class="en">be close to someone</div><div class="ru">быть близким с кем-л.</div></div>
+        <div class="word-card"><div class="en">have a chat</div><div class="ru">поговорить, поболтать</div></div>
+        <div class="word-card"><div class="en">get together</div><div class="ru">собираться, встречаться</div></div>
+      </div>
+
+      <h3>🔹 Household chores 🏠</h3>
+      <div class="word-grid">
+        <div class="word-card"><div class="en">do the washing up</div><div class="ru">мыть посуду</div></div>
+        <div class="word-card"><div class="en">do the laundry</div><div class="ru">стирать бельё</div></div>
+        <div class="word-card"><div class="en">make the bed</div><div class="ru">заправлять кровать</div></div>
+        <div class="word-card"><div class="en">take out the rubbish</div><div class="ru">выносить мусор</div></div>
+        <div class="word-card"><div class="en">vacuum the floor</div><div class="ru">пылесосить пол</div></div>
+        <div class="word-card"><div class="en">water the plants</div><div class="ru">поливать растения</div></div>
+        <div class="word-card"><div class="en">walk the dog</div><div class="ru">выгуливать собаку</div></div>
+        <div class="word-card"><div class="en">iron the clothes</div><div class="ru">гладить одежду</div></div>
+        <div class="word-card"><div class="en">tidy up the room</div><div class="ru">убирать комнату</div></div>
+        <div class="word-card"><div class="en">do the shopping</div><div class="ru">ходить за покупками</div></div>
+      </div>
+
+      <a href="https://clck.ru/3VoY29" target="_blank" class="quizlet-btn">🎯 Открыть Quizlet с карточками</a>
+    </div>
+  </div>
+
+  <!-- LISTENING -->
+  <div class="tab-content" id="listening">
+    <div class="section">
+      <h2>🎧 Prepare 4, Unit 7 «Getting On»</h2>
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="https://drive.google.com/thumbnail?id=1xNRz8hII7T-60WyC-KfDpnuz88R8oncH&sz=w1000" alt="Getting On" style="max-width: 100%; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+      </div>
+      <p>Look at the photos and listen to two conversations. Complete the sentences with the correct name.</p>
+      <div class="media-block audio">
+        <div class="media-label">🔊 Аудио: PREPARE2_L4_SB_033.mp3</div>
+        <iframe src="https://drive.google.com/file/d/1nuNH-7H48biED4ueUjLU6000NH6VXpSt/preview" allow="autoplay"></iframe>
+      </div>
+      <div class="exercise-item">1. <input class="fill-input" placeholder="Имя"> has a problem with family.</div>
+      <div class="exercise-item">2. <input class="fill-input" placeholder="Имя"> has a problem with non-family members.</div>
+    </div>
+
+    <div class="section" style="border-left-color: #4a90e2;">
+      <h2>🎧 Prepare 4, Life Skills «Dealing with conflict» (стр. 51)</h2>
+      <p>Listen to a conversation. Why is Michael upset with Amy? Listen again and answer the questions — отмечай ✅ те, которые уже обсудили.</p>
+      <div class="media-block audio">
+        <div class="media-label">🔊 Аудио: PREPARE2_L4_SB_040.mp3</div>
+        <iframe src="https://drive.google.com/file/d/1ZBlWP9ZiFEkshppRszg1JhPmLXu3EVyy/preview" allow="autoplay"></iframe>
+      </div>
+      <ul class="question-list">
+        <li><span class="qmark">⬜</span> What time did Amy arrive?</li>
+        <li><span class="qmark">⬜</span> Who has got Amy's bicycle right now?</li>
+        <li><span class="qmark">⬜</span> When did Michael and Amy plan to meet?</li>
+        <li><span class="qmark">⬜</span> Why does Amy usually arrive late?</li>
+        <li><span class="qmark">⬜</span> What solution do Michael and Amy discuss?</li>
+        <li><span class="qmark">⬜</span> What does Michael want to do right now?</li>
+      </ul>
+    </div>
+
+    <div class="section" style="border-left-color: #ffd93d;">
+      <h2>🎧 Prepare 5, Unit 2, стр. 17 — Listening Part 3</h2>
+      <p>Read the notes. What are they about? What kind of information is missing in each space?</p>
+      <div class="media-block audio">
+        <div class="media-label">🔊 Аудио: PREPARE2_L5_SB_006.mp3</div>
+        <iframe src="https://drive.google.com/file/d/1fsYLnYXVCa3pAVKELViMtOqCGJlQN-dG/preview" allow="autoplay"></iframe>
+      </div>
+      <div class="rule-block" style="border-top-color: #ffd93d;">
+        <h3>📝 Notes for WRITING A QUIZ</h3>
+        <div class="exercise-item">The name of the quiz is (1) <input class="fill-input"></div>
+        <div class="exercise-item">The quiz should not just include questions about (2) <input class="fill-input"> such as people's interests.</div>
+        <div class="exercise-item">Write ten questions using a different (3) <input class="fill-input"> each time.</div>
+        <div class="exercise-item">Write options for people to select, which show whether a person is (4) <input class="fill-input"> or shy, for example.</div>
+        <div class="exercise-item">Give the finished quiz to the teacher by (5) <input class="fill-input"> July.</div>
+        <div class="exercise-item">Email the teacher at (6) <input class="fill-input"> @ourschool.uk with any questions.</div>
+      </div>
+    </div>
+
+    <div class="section" style="border-left-color: #c86dd7;">
+      <h2>🎬 Prepare 5, Unit 2 — Video</h2>
+      <p>Watch the video and then answer the questions: How important are friends to you? What makes a good friend, in your opinion?</p>
+      <div class="media-block video">
+        <div class="media-label">🎬 Видео: PREPARE_5_Video with subtitles_01.mp4</div>
+        <iframe src="https://drive.google.com/file/d/1j4iDR77Tnt8mvWdHBFb78jxFls0BD9Sx/preview" allow="autoplay"></iframe>
+      </div>
+      <ul class="question-list">
+        <li><span class="qmark">⬜</span> How important are friends to you?</li>
+        <li><span class="qmark">⬜</span> What makes a good friend, in your opinion?</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- READING -->
+  <div class="tab-content" id="reading">
+    <div class="section">
+      <h2>📖 My Best Friend and the Biggest Argument We've Ever Had</h2>
+      <div class="hint" style="background:#fff9c4; padding:10px 15px; border-radius:8px; font-size:0.9em; color:#665c00; margin-bottom:12px; border-left:4px solid #ffd93d;">💡 Выделяй слова и словосочетания разными цветами прямо в тексте! Выбери цвет — и кликай по словам. А ещё перетаскивай заголовки в текст.</div>
+      <div class="highlight-tools">
+        <button class="hl-btn y" data-color="hl-yellow" title="Жёлтый"></button>
+        <button class="hl-btn g" data-color="hl-green" title="Зелёный"></button>
+        <button class="hl-btn p" data-color="hl-pink" title="Розовый"></button>
+        <button class="hl-btn b" data-color="hl-blue" title="Голубой"></button>
+        <button class="hl-btn" data-color="" style="background: #fff; border: 2px solid #ccc;" title="Сбросить">✖</button>
+      </div>
+
+      <h3 style="color:#c86dd7; margin: 20px 0 10px;">🎯 Перетащи заголовки в нужные абзацы:</h3>
+      <div class="headings-bank" id="headingsBank">
+        <div class="heading-chip" draggable="true" data-heading="A">A. How a Minor Delay Turned into a Serious Falling-Out</div>
+        <div class="heading-chip" draggable="true" data-heading="B">B. The Foundations of a Friendship: Shared Interests and Mutual Support</div>
+        <div class="heading-chip" draggable="true" data-heading="C">C. Parental Advice and the Decision to Reconcile</div>
+        <div class="heading-chip" draggable="true" data-heading="D">D. Taking the First Step: An Apology and an Invitation to Talk</div>
+        <div class="heading-chip" draggable="true" data-heading="E">E. The Importance of Never Admitting Your Mistakes</div>
+      </div>
+
+      <div class="reading-text" id="readingText">
+        <p data-num="1">Hi everyone! My name is Mia, and this is my first blog post. I'd like to share a story about friendship, conflict and — luckily — a happy ending.</p>
+        <p data-num="2">I have got a best friend. Her name is Sophie. We met when we were five, and we've been close ever since. Our neighbours still laugh because we live next door to each other. We have a lot in common: we both love reading, hate getting up early, and prefer chocolate to any other food. We trust each other and support each other in every situation. <span class="drop-zone" data-zone="2">перетащи заголовок</span></p>
+        <p data-num="3">But last month we had a terrible argument. It was on a Friday evening, and I was waiting for Sophie at our favourite café near the park. She was thirty minutes late. And she didn't even apologize! I was so annoyed that I said some rude things to her. I know I was impatient — I'm usually quite patient, but not that evening. Sophie got upset and said I was being selfish. Then she fell out with me. <span class="drop-zone" data-zone="3">перетащи заголовок</span></p>
+        <p data-num="4">For two days we didn't talk. I felt lonely and miserable. My mum, who is usually very easy-going, said: "You two are like sisters. You can't just ignore each other. Talk to her." My dad, who is much stricter, agreed: "If you value your friendship, you should resolve this conflict." <span class="drop-zone" data-zone="4">перетащи заголовок</span></p>
+        <p data-num="5">I realized that I was being unfair. I didn't know why Sophie was late. I didn't ask her — I just started arguing. So I decided to make up with her. I bought her favourite chocolate, went to her house and said: "I'm sorry. I behaved badly. Can we chat?" <span class="drop-zone" data-zone="5">перетащи заголовок</span></p>
+        <p data-num="6">Sophie smiled and forgave me. She explained that her younger cousin was ill and she was looking after him. She was late because she was helping her aunt. I felt terrible! But Sophie said: "Don't worry. Every friendship has arguments. The important thing is that we are honest with each other."</p>
+        <p data-num="7">Now we're closer than ever. We still have arguments sometimes — but we always apologize and make up. Arguments are a normal part of any relationship. The solution is simple: talk, listen and forgive.</p>
+        <p data-num="8">So, if you fall out with your best friend, don't wait. Say sorry, share your feelings, and remember that real friendship is worth fighting for.</p>
+      </div>
+    </div>
+
+    <div class="section" style="border-left-color: #fd79a8;">
+      <h2>1️⃣ Choosing the main idea</h2>
+      <p>Which sentence best expresses the main idea of the text? Choose A, B or C.</p>
+      <div class="tfns-item"><p><b>A.</b> Arguments between friends are always a sign that the friendship is over.</p><div class="tfns-options"><button class="tfns-btn">A</button></div></div>
+      <div class="tfns-item"><p><b>B.</b> Even close friends can have conflicts, but honest communication and forgiveness can make the relationship stronger.</p><div class="tfns-options"><button class="tfns-btn">B</button></div></div>
+      <div class="tfns-item"><p><b>C.</b> The best way to avoid arguments with friends is to never criticize them.</p><div class="tfns-options"><button class="tfns-btn">C</button></div></div>
+    </div>
+
+    <div class="section" style="border-left-color: #55efc4;">
+      <h2>2️⃣ True / False / Not Stated</h2>
+      <div class="tfns-item"><p><b>1.</b> Mia and Sophie have been close friends since they were five years old.</p><div class="tfns-options"><button class="tfns-btn">True</button><button class="tfns-btn">False</button><button class="tfns-btn">Not Stated</button></div></div>
+      <div class="tfns-item"><p><b>2.</b> Sophie apologized for being late as soon as she arrived at the café.</p><div class="tfns-options"><button class="tfns-btn">True</button><button class="tfns-btn">False</button><button class="tfns-btn">Not Stated</button></div></div>
+      <div class="tfns-item"><p><b>3.</b> Mia's mother is stricter than her father.</p><div class="tfns-options"><button class="tfns-btn">True</button><button class="tfns-btn">False</button><button class="tfns-btn">Not Stated</button></div></div>
+      <div class="tfns-item"><p><b>4.</b> Mia and Sophie did not speak to each other for two days after the argument.</p><div class="tfns-options"><button class="tfns-btn">True</button><button class="tfns-btn">False</button><button class="tfns-btn">Not Stated</button></div></div>
+      <div class="tfns-item"><p><b>5.</b> Mia and Sophie often argue about what food to eat.</p><div class="tfns-options"><button class="tfns-btn">True</button><button class="tfns-btn">False</button><button class="tfns-btn">Not Stated</button></div></div>
+    </div>
+
+    <div class="section" style="border-left-color: #a29bfe;">
+      <h2>3️⃣ Comprehension questions</h2>
+      <p>Answer the questions in full sentences. Отмечай ✅ те, которые уже обсудили.</p>
+      <ul class="question-list">
+        <li><span class="qmark">⬜</span> Why did Mia feel annoyed when Sophie arrived at the café?</li>
+        <li><span class="qmark">⬜</span> What advice did Mia's parents give her?</li>
+        <li><span class="qmark">⬜</span> How did Mia and Sophie make up?</li>
+      </ul>
+    </div>
+
+    <div class="read-aloud-section">
+      <h2 style="color: #4a3f8f;">🎤 Read aloud practice (ОГЭ, Task 1)</h2>
+      <p>Прочитай каждый текст вслух. Используй таймеры: сначала 1,5 минуты на подготовку, потом 2 минуты на чтение вслух.</p>
+
+      <div class="timer-panel">
+        <div class="timer-block">
+          <div class="timer-label">⏱️ Время на подготовку (1:30)</div>
+          <div class="timer-display" id="timer1">1:30</div>
+          <div class="timer-btns">
+            <button class="timer-btn start" onclick="startTimer('timer1', 90)">▶ Старт</button>
+            <button class="timer-btn reset" onclick="resetTimer('timer1', 90)">↺ Сброс</button>
+          </div>
+        </div>
+        <div class="timer-block">
+          <div class="timer-label">⏱️ Время на чтение вслух (2:00)</div>
+          <div class="timer-display" id="timer2">2:00</div>
+          <div class="timer-btns">
+            <button class="timer-btn start" onclick="startTimer('timer2', 120)">▶ Старт</button>
+            <button class="timer-btn reset" onclick="resetTimer('timer2', 120)">↺ Сброс</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="read-text-block">
+        <h4>📘 Text 1 — The Pacific Ocean</h4>
+        <p>People have always wanted to discover new things and new worlds. We have built spaceships to go to other planets and are planning to visit other galaxies one day. Meanwhile, we know very little about our own planet. The oceans, which cover 70 percent of the planet, are an unknown world to us. The Pacific Ocean is the largest one. The lowest point on the Earth is also there. It is called Challenger Deep and it was discovered in 1875. The Pacific Ocean stretches from the Arctic Ocean to the coast of Antarctica, but most of its water is in the warm tropics, which makes it warm. A lot of fish and animals live in the Pacific Ocean. The place is still waiting for researchers to discover its secrets for us.</p>
+      </div>
+
+      <div class="read-text-block">
+        <h4>📘 Text 2 — The Sun</h4>
+        <p>Without the energy from the Sun, the Earth would have no life at all. Nowadays everyone knows that the Sun is a star. Like all stars, the Sun is a great burning ball of gases. To us, it seems large and red. The other stars look white or light blue because they are much farther from us than the Sun. In the past, many people believed that the Earth was the centre of the universe. They thought that the Sun and the stars went round it. Only in 1543, a great Polish scientist published a book in which he tried to prove a different point of view. According to him, the Earth and the other planets moved round the Sun. Those people who supported the scientist were often imprisoned and even killed.</p>
+      </div>
+
+      <div class="read-text-block">
+        <h4>📘 Text 3 — High-speed trains</h4>
+        <p>Since 2007 high-speed trains have become a common type of transport in Europe. They make it possible to cut travel times by hours. The trains travel at 350 kilometres an hour, and this is not the limit! The only problem for the engineers is the loud noise the trains produce. People living in the areas the trains travel through suffer from the noise greatly. For the passengers, the situation is different. For their comfort, all the carriages are made sound-proof from the inside. Travelling on high-speed trains is comfortable and pleasant. In the future, a high-speed railroad network could cover most of Europe. For example, a trip from Paris to Rome could take only 3 hours!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPEAKING -->
+  <div class="tab-content" id="speaking">
+    <div class="sub-tabs">
+      <div class="sub-tab active" data-sub="role">🎭 Ролевая игра</div>
+      <div class="sub-tab" data-sub="interview">🎤 Интервью</div>
+      <div class="sub-tab" data-sub="monologue">🗣️ Монолог</div>
+    </div>
+
+    <div class="sub-content active" id="role">
+      <div class="section">
+        <h2>🎭 Задание 1. Ролевая игра</h2>
+        <h3>💬 Ситуация: «Помириться после ссоры»</h3>
+        <p><b>Контекст:</b> Два друга поссорились из-за недопонимания. Один забыл о важной договорённости, другой обиделся. Им нужно поговорить и решить конфликт.</p>
+
+        <div class="role-card">
+          <h4>😠 Карточка для Alex</h4>
+          <p>Ты обижен на лучшего друга Сэма. Сэм забыл о ваших планах пойти в кино вместе. Ты ждал час. Ты чувствуешь раздражение и разочарование. Ты хочешь, чтобы Сэм извинился и объяснил, что случилось. Используй эти фразы:</p>
+          <ul>
+            <li>I'm really annoyed with you.</li>
+            <li>You always forget about our plans!</li>
+            <li>It isn't my fault that I was waiting.</li>
+            <li>I felt lonely and miserable.</li>
+            <li>Can you explain what happened?</li>
+            <li>I'd like to resolve this conflict.</li>
+          </ul>
+        </div>
+
+        <div class="role-card" style="border-top-color: #4a90e2;">
+          <h4>😔 Карточка для Sam</h4>
+          <p>Ты забыл о планах с Алексом. У тебя была уважительная причина — твой младший двоюродный брат заболел, и ты присматривал за ним. Ты сожалеешь и хочешь помириться с Алексом. Используй эти фразы:</p>
+          <ul>
+            <li>I'm terribly sorry. I didn't mean to hurt you.</li>
+            <li>I had a problem with my family.</li>
+            <li>I was looking after my cousin.</li>
+            <li>Can we talk about it?</li>
+            <li>I value our friendship.</li>
+            <li>Let's make up and get together soon.</li>
+          </ul>
+        </div>
+
+        <div class="role-card" style="border-top-color: #ffd93d;">
+          <h4>🕊️ Дополнительный персонаж: Jamie</h4>
+          <p>Ты общий друг Алекса и Сэма. Тебе не нравится, когда они ссорятся. Ты хочешь помочь им помириться. Используй эти фразы:</p>
+          <ul>
+            <li>I don't like it when you two argue.</li>
+            <li>You have a lot in common.</li>
+            <li>Why don't you talk to each other?</li>
+            <li>I think you should forgive each other.</li>
+            <li>Let's all get together and do something fun.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-content" id="interview">
+      <div class="section">
+        <h2>🎤 Задание 2. Интервью — Колесо фортуны</h2>
+        <p>Нажми <b>SPIN</b>, чтобы раскрутить колесо и получить вопрос. Ответь на него устно. Вопрос исчезнет из колеса, пока не закончатся все вопросы.</p>
+
+        <div class="wheel-container">
+          <div class="wheel-wrapper">
+            <div class="wheel-pointer"></div>
+            <svg class="wheel-svg" id="wheel" viewBox="-1 -1 2 2"></svg>
+          </div>
+        </div>
+
+        <div style="text-align:center; margin-top: 10px;">
+          <button class="spin-btn" id="spinBtn" onclick="spinWheel()">SPIN 🎡</button>
+        </div>
+
+        <div class="question-display" id="questionDisplay">Нажми SPIN, чтобы получить вопрос 🎲</div>
+      </div>
+    </div>
+
+    <div class="sub-content" id="monologue">
+      <div class="section">
+        <h2>🗣️ Задание 3. Монолог</h2>
+
+        <div class="rule-block" style="border-top-color: #4a90e2; margin-bottom: 20px;">
+          <h3>📋 Справка: как выполнять Task 3</h3>
+          <div class="rule">
+            <p><b>Структура монолога:</b></p>
+            <ul style="padding-left: 20px; line-height: 1.9;">
+              <li>🔹 <b>Вступление:</b> <i>Now I'm going to give a talk about &lt;тема&gt;</i></li>
+              <li>🔹 <b>Основная часть:</b> ответ на все 4 вопроса по порядку, используя связки <i>Personally, As for, Well, As far as I know</i></li>
+              <li>🔹 <b>Заключение:</b> <i>That's all what I wanted to say.</i></li>
+            </ul>
+            <p style="margin-top: 10px;"><b>Правила:</b></p>
+            <ul style="padding-left: 20px; line-height: 1.9;">
+              <li>Не читать пункты плана вслух — отвечай как связный текст.</li>
+              <li>Используй слова-связки в начале каждого ответа.</li>
+              <li>10–12 фраз (минимум 3 предложения на каждый пункт).</li>
+              <li>Время: 1,5 минуты на подготовку, не более 2 минут на ответ.</li>
+            </ul>
+          </div>
+
+          <h3>🧩 Шаблон монолога</h3>
+          <div class="example"><div class="en"><b>Now I'm going to give a talk about</b> ____________.</div></div>
+          <div class="example"><div class="en"><b>Personally,</b> I think ____________. ____________.</div></div>
+          <div class="example"><div class="en"><b>As for</b> ____________, I can say that ____________. ____________.</div></div>
+          <div class="example"><div class="en"><b>Well,</b> ____________. ____________.</div></div>
+          <div class="example"><div class="en"><b>In conclusion, I'd like to say that</b> ____________. <b>That's all what I wanted to say.</b></div></div>
+        </div>
+
+        <div class="mono-card">
+          <h4>🌟 Task 3. Best Friend (Стр. 5)</h4>
+          <p>You are going to give a talk about <b>your best friend</b>. You will have to start in 1.5 minutes and speak for not more than 2 minutes (10–12 sentences). Remember to say:</p>
+          <ul style="padding-left: 20px; margin-top: 10px;">
+            <li>what people need friends for;</li>
+            <li>how long you and your friend have known each other;</li>
+            <li>what you enjoy doing together;</li>
+            <li>what your attitude to friendship is.</li>
+          </ul>
+          <textarea class="notes-area" placeholder="📝 Запиши свои заметки здесь..."></textarea>
+        </div>
+
+        <div class="mono-card" style="border-left-color: #4a90e2; background: linear-gradient(135deg, #e6f0ff, #f0f9ff);">
+          <h4>⏰ Task 3. Free Time (Стр. 3)</h4>
+          <p>You are going to give a talk about <b>your free time</b>. You will have to start in 1.5 minutes and speak for not more than 2 minutes (10–12 sentences). Remember to say:</p>
+          <ul style="padding-left: 20px; margin-top: 10px;">
+            <li>whether you have a lot of free time, and why, or why not;</li>
+            <li>what you enjoy doing in your free time;</li>
+            <li>what your Sunday afternoons are like;</li>
+            <li>what your attitude to planning your free time is.</li>
+          </ul>
+          <textarea class="notes-area" placeholder="📝 Запиши свои заметки здесь..."></textarea>
+        </div>
+
+        <div class="mono-card" style="border-left-color: #55efc4; background: linear-gradient(135deg, #eafff7, #f0fff9);">
+          <h4>🏫 Task 3. School (Стр. 4)</h4>
+          <p>You are going to give a talk about <b>your school</b>. You will have to start in 1.5 minutes and speak for not more than 2 minutes (10–12 sentences). Remember to say:</p>
+          <ul style="padding-left: 20px; margin-top: 10px;">
+            <li>what you like most about your school;</li>
+            <li>what weekday you find the most difficult, and why;</li>
+            <li>what you would like to change in your school life;</li>
+            <li>what your attitude to your school life is.</li>
+          </ul>
+          <textarea class="notes-area" placeholder="📝 Запиши свои заметки здесь..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRAMMAR -->
+  <div class="tab-content" id="grammar">
+    <div class="grammar-nav">
+      <button class="active" data-rule="r1">1. Типы предложений</button>
+      <button data-rule="r2">2. Present Simple</button>
+      <button data-rule="r3">3. Present Continuous</button>
+      <button data-rule="r4">4. PS vs PC</button>
+      <button data-rule="r5">5. have got</button>
+      <button data-rule="r6">6. Личные мест.</button>
+      <button data-rule="r7">7. Притяж. мест.</button>
+      <button data-rule="r8">8. -'s</button>
+      <button data-rule="r9">9. at/on/in</button>
+      <button data-rule="r10">10. Наречия</button>
+      <button data-rule="r11">11. love/hate doing</button>
+      <button data-rule="r12">12. I'd like to</button>
+    </div>
+
+    <div class="grammar-rule active" id="r1">
+      <div class="rule-block">
+        <h2>1️⃣ Типы предложений</h2>
+        <div class="rule">
+          <p>📌 <b>Повествовательные (declarative)</b> — сообщают информацию.</p>
+          <p>📌 <b>Вопросительные (interrogative)</b> — задают вопрос.</p>
+          <p>📌 <b>Побудительные (imperative)</b> — побуждают к действию. Начинаются с глагола без подлежащего. Отрицание: Don't + глагол.</p>
+        </div>
+        <h3>Примеры:</h3>
+        <div class="example"><span class="en">I have got a best friend.</span><div class="ru">У меня есть лучший друг. — повествовательное.</div></div>
+        <div class="example"><span class="en">Do you get on well with your sister?</span><div class="ru">Ты хорошо ладишь с сестрой? — вопросительное.</div></div>
+        <div class="example"><span class="en">Don't fall out with your friends!</span><div class="ru">Не ссорься с друзьями! — побудительное.</div></div>
+        <h3>✍️ Упражнение 1. Определи тип предложения.</h3>
+        <div class="exercise-item">1. My cousin is very reliable. <input class="fill-input"></div>
+        <div class="exercise-item">2. Are you on your own again? <input class="fill-input"></div>
+        <div class="exercise-item">3. Don't be so selfish! <input class="fill-input"></div>
+        <div class="exercise-item">4. We have a lot in common. <input class="fill-input"></div>
+        <div class="exercise-item">5. Why did they have an argument? <input class="fill-input"></div>
+        <div class="exercise-item">6. Let's get together on Sunday. <input class="fill-input"></div>
+      </div>
+    </div>
+
+    <div class="grammar-rule" id="r2">
+      <div class="rule-block">
+        <h2>2️⃣ Present Simple</h2>
+        <div class="rule">
+          <p><b>Правило:</b> Present Simple — для регулярных действий, привычек, фактов, расписаний, состояний.</p>
+          <p><b>Образование:</b> I/you/we/they — инфинитив; he/she/it — + -s/-es. Отрицание: don't/doesn't + инфинитив. Вопрос: Do/Does + подлежащее + инфинитив.</p>
+        </div>
+        <h3>Примеры:</h3>
+        <div class="example"><span class="en">We have a lot in common.</span><div class="ru">У нас много общего.</div></div>
+        <div class="example"><span class="en">Do you trust your friends?</span><div class="ru">Ты доверяешь друзьям?</div></div>
+        <div class="example"><span class="en">He always supports me.</span><div class="ru">Он всегда поддерживает меня.</div></div>
+        <h3>✍️ Упражнение 2. Раскрой скобки в Present Simple.</h3>
+        <div class="exercise-item">1. My parents (not / argue) <input class="fill-input"> very often.</div>
+        <div class="exercise-item">2. She (be) <input class="fill-input"> a very reliable friend.</div>
+        <div class="exercise-item">3. We (prefer) <input class="fill-input"> to spend time with our family.</div>
+        <div class="exercise-item">4. He (have) <input class="fill-input"> a lot of problems with his neighbour.</div>
+        <div class="exercise-item">5. (you / get on) <input class="fill-input"> well with your classmates?</div>
+        <div class="exercise-item">6. My cousin (not / like) <input class="fill-input"> to be on his own.</div>
+      </div>
+    </div>
+
+    <div class="grammar-rule" id="r3">
+      <div class="rule-block">
+        <h2>3️⃣ Present Continuous</h2>
+        <div class="rule">
+          <p><b>Правило:</b> Present Continuous используется для:</p>
+          <ul style="padding-left: 20px;">
+            <li>действий, происходящих сейчас (I am writing a blog post now.)</li>
+            <li>временных ситуаций (I am living with my aunt this month.)</li>
+            <li>запланированных будущих действий (We are meeting our friends tomorrow.)</li>
+            <li>изменений, происходящих вокруг (My English is getting better.)</li>
+            <li>🔸 <b>Раздражения / неодобрения</b> — с наречиями always, constantly, forever (He is always losing his keys!)</li>
+          </ul>
+          <p style="margin-top: 10px;"><b>Образование:</b> am/is/are + глагол + -ing. Отрицание: am not/is not/are not + -ing. Вопрос: Am/Is/Are + подлежащее + -ing.</p>
+          <p style="margin-top: 10px;">🔸 <b>Конструкция am/is/are being + прилагательное</b> используется, когда мы говорим о <b>поведении человека в конкретный момент</b>, а не о его постоянном качестве: <i>Why are you being so impatient today?</i> (Почему ты сегодня так себя ведёшь?)</p>
+        </div>
+        <h3>Примеры:</h3>
+        <div class="example"><span class="en">I am looking after my little cousin today.</span><div class="ru">Я присматриваю за двоюродным братом сегодня.</div></div>
+        <div class="example"><span class="en">She is constantly arguing with her brother.</span><div class="ru">Она постоянно ссорится с братом. — раздражение.</div></div>
+        <div class="example"><span class="en">Why are you being so rude today?</span><div class="ru">Почему ты сегодня такой грубый? — поведение сейчас.</div></div>
+        <div class="example"><span class="en">Are you enjoying the party?</span><div class="ru">Тебе нравится вечеринка?</div></div>
+        <h3>✍️ Упражнение 3. Поставь глаголы в Present Continuous.</h3>
+        <div class="exercise-item">1. Listen! My parents (argue) <input class="fill-input"> in the kitchen.</div>
+        <div class="exercise-item">2. I (look after) <input class="fill-input"> my neighbour's cat while she is away.</div>
+        <div class="exercise-item">3. Why (you / be) <input class="fill-input"> so impatient with your sister today?</div>
+        <div class="exercise-item">4. They (not / chat) <input class="fill-input"> online at the moment.</div>
+        <div class="exercise-item">5. She (always / lose) <input class="fill-input"> her keys!</div>
+      </div>
+    </div>
+
+    <div class="grammar-rule" id="r4">
+      <div class="rule-block">
+        <h2>4️⃣ Present Simple vs Present Continuous</h2>
+        <div class="rule"><p><b>Правило:</b> Present Simple — постоянные действия, привычки, факты. Present Continuous — временные действия сейчас.</p></div>
+        <h3>Примеры:</h3>
+        <div class="example"><span class="en">I usually trust my friends.</span><div class="ru">Я обычно доверяю друзьям.</div></div>
+        <div class="example"><span class="en">I am trusting him less and less these days.</span><div class="ru">Я доверяю ему всё меньше в эти дни.</div></div>
+        <h3>✍️ Упражнение 4. Выбери правильную форму.</h3>
+        <div class="exercise-item">1. My brother (always / make) <input class="fill-input"> fun of me, it annoys me.</div>
+        <div class="exercise-item">2. Look! The neighbours (have) <input class="fill-input"> an argument again.</div>
+        <div class="exercise-item">3. She usually (support) <input class="fill-input"> her friends in difficult situations.</div>
+        <div class="exercise-item">4. I (not / trust) <input class="fill-input"> him because he often lies.</div>
+        <div class="exercise-item">5. Why (you / be) <input class="fill-input"> so rude to your cousin today?</div>
+      </div>
+    </div>
+
+    <div class="grammar-rule" id="r5">
+      <div class="rule-block">
+        <h2>5️⃣ Have got</h2>
+        <div class="rule"><p><b>Правило:</b> Have got используется для выражения possession, отношений, болезней. Отрицание: haven't got / hasn't got. Вопрос: Have you got...? / Has she got...?</p></div>
+        <h3>Примеры:</h3>
+        <div class="example"><span class="en">I have got a lot of friends.</span><div class="ru">У меня много друзей.</div></div>
+        <div class="example"><span class="en">She has got two cousins.</span><div class="ru">У неё два двоюродных брата.</div></div>
+        <div class="example"><span class="en">Have you got a best friend?</span><div class="ru">У тебя есть лучший друг?</div></div>
+        <h3>✍️ Упражнение 5. Заполни пропуски have got / has got.</h3>
+        <div class="exercise-item">1. She <input class="fill-input"> a very reliable friend.</div>
+        <div class="exercise-item">2. We <input class="fill-input"> (not) any arguments with our parents.</div>
+        <div class="exercise-item">3. <input class="fill-input"> you <input class="fill-input"> a big family?</div>
+        <div class="exercise-item">4. My cousin <input class="fill-input"> (not) a lot of free time.</div>
+        <div class="exercise-item">5. They <input class="fill-input"> a lot in common.</div>
+      </div>
+    </div>
+
+    <div class="grammar-rule" id="r6">
+      <div class="rule-block">
+        <h2>6️⃣ Личные местоимения</h2>
+        <div class="rule"><p><b>Правило:</b> Именительный падеж (I, you, he, she, it, we, they) — подлежащее. Объектный падеж (me, you, him, her, it, us, them) — дополнение.</p></div>
+        <h3>Примеры:</h3>
+        <div class="example"><span class="en">I support my friends. They support me.</span><div class="ru">Я поддерживаю друзей. Они поддерживают меня.</div></div>
+        <div class="example"><span class="en">She often argues with him.</span><div class="ru">Она часто спорит с ним.</div></div>
+        <h3>✍️ Упражнение 6. Замени подходящими местоимениями.</h3>
+        <div class="exercise-item">1. My sister and I often get together. → <input class="fill-input"></div>
+        <div class="exercise-item">2. My parents are very caring. → <input class="fill-input"></div>
+        <div class="exercise-item">3. I have an argument with my brother. → <input class="fill-input"></div>
+        <div class="exercise-item">4. She doesn't like her neighbours. → <input class="fill-input"></div>
+      </div>
+    </div>
+
+    <div class="grammar-rule" id="r7">
+      <div class="rule-block">
+        <h2>7️⃣ Притяжательные местоимения</h2>
+        <div class="rule">
+          <p><b>Правило:</b> Местоимения-прилагательные (my, your, his, her, its, our, their) стоят перед существительным. Местоимения-существительные (mine, yours, his, hers, its, ours, theirs) заменяют существительное.</p>
+        </div>
+        <h3>Примеры:</h3>
+        <div class="example"><span class="en">This is my best friend. Her name is Sophie.</span><div class="ru">Это моя лучшая подруга. Её зовут Софи.</div></div>
+        <div class="example"><span class="en">Is this your book? — No, it's hers.</span><div class="ru">Это твоя книга? — Нет, её.</div></div>
+        <h3>✍️ Упражнение 7. Выбери правильное местоимение.</h3>
+        <div class="exercise-item">1. This is (my / mine) <input class="fill-input"> cousin.</div>
+        <div class="exercise-item">2. The choice is (your / yours) <input class="fill-input"> .</div>
+        <div class="exercise-item">3. (Our / Ours) <input class="fill-input"> family is very close.</div>
+        <div class="exercise-item">4. She is a friend of (my / mine) <input class="fill-input"> .</div>
+      </div>
+    </div>
+
+    <div class="grammar-rule" id="r8">
+      <div class="rule-block">
+        <h2>8️⃣ Притяжательный падеж -'s</h2>
+        <div class="rule">
+          <p><b>Правило:</b> 's — с одушевлёнными. Мн. число на -s → только апостроф. Неодушевлённые — через of.</p>
+          <p>🔸 <b>Если речь идёт о двух людях</b> и предмет принадлежит им обоим, <b>'s ставится после второго имени</b>: <i>Jack and Jill's wedding</i> (свадьба Джека и Джил).</p>
+        </div>
+        <h3>Примеры:</h3>
+        <div class="example"><span class="en">My sister's name is Anna.</span><div class="ru">Имя моей сестры — Анна.</div></div>
+        <div class="example"><span class="en">My parents' house is in the country.</span><div class="ru">Дом моих родителей за городом.</div></div>
+        <div class="example"><span class="en">Jack and Jill's wedding was in June.</span><div class="ru">Свадьба Джека и Джил была в июне.</div></div>
+        <h3>✍️ Упражнение 8. Перефразируй с 's или of.</h3>
+        <div class="exercise-item">1. The room of my sister → <input class="fill-input" style="width: 100%;"></div>
+        <div class="exercise-item">2. The car of my parents → <input class="fill-input" style="width: 100%;"></div>
+        <div class="exercise-item">3. The wedding of Jack and Jill → <input class="fill-input" style="width: 100%;"></div>
+        <div class="exercise-item">4. The toys of the children → <input class="fill-input" style="width: 100%;"></div>
+      </div>
+    </div>
+
+    <div class="grammar-rule" id="r9">
+      <div class="rule-block">
+        <h2>9️⃣ Предлоги времени at/on/in</h2>
+        <div class="rule">
+          <p>📌 <b>at</b> — точное время, праздники, at night, at the weekend.</p>
+          <p>📌 <b>on</b> — дни недели, даты, конкретные дни.</p>
+          <p>📌 <b>in</b> — месяцы, годы, времена года, части дня (кроме at night).</p>
+        </div>
+        <h3>Примеры:</h3>
+        <div class="example"><span class="en">We have dinner at 7 pm.</span><div class="ru">Мы ужинаем в 7 вечера.</div></div>
+        <div class="example"><span class="en">My birthday is on 10th June.</span><div class="ru">Мой день рождения 10 июня.</div></div>
+        <div class="example"><span class="en">They got married in August.</span><div class="ru">Они поженились в августе.</div></div>
+        <h3>✍️ Упражнение 9. Вставь at, on или in.</h3>
+        <div class="exercise-item">1. My cousin's birthday is <input class="fill-input"> 3rd March.</div>
+        <div class="exercise-item">2. We often get together <input class="fill-input"> the evening.</div>
+        <div class="exercise-item">3. They have an argument <input class="fill-input"> the moment.</div>
+        <div class="exercise-item">4. The wedding is <input class="fill-input"> Saturday.</div>
+        <div class="exercise-item">5. She was born <input class="fill-input"> 2007.</div>
+      </div>
+    </div>
+
+    <div class="grammar-rule" id="r10">
+      <div class="rule-block">
+        <h2>🔟 Наречия</h2>
+        <div class="rule">
+          <p><b>Правило:</b> Наречия образа действия образуются через -ly. Некоторые совпадают с прилагательными (fast, hard, late).</p>
+          <p>🔸 <b>Место наречия:</b></p>
+          <ul style="padding-left: 20px;">
+            <li>Наречия образа действия — после глагола/дополнения: <i>She speaks politely.</i></li>
+            <li>Наречия частотности — перед смысловым глаголом, но после be: <i>I always support; She is always cheerful.</i></li>
+            <li>Наречия времени/места — в конце предложения.</li>
+            <li>Перед прилагательными и другими наречиями: <i>terribly sorry, incredibly quickly.</i></li>
+          </ul>
+        </div>
+        <h3>Примеры:</h3>
+        <div class="example"><span class="en">She speaks politely to her parents.</span><div class="ru">Она вежливо разговаривает с родителями.</div></div>
+        <div class="example"><span class="en">I always support my friends.</span><div class="ru">Я всегда поддерживаю друзей.</div></div>
+        <div class="example"><span class="en">He hardly ever argues with his friends.</span><div class="ru">Он почти никогда не спорит с друзьями.</div></div>
+        <h3>✍️ Упражнение 10. Образуй наречие.</h3>
+        <div class="exercise-item">1. She apologized (polite) <input class="fill-input"> for being late.</div>
+        <div class="exercise-item">2. They argued (serious) <input class="fill-input"> about the conflict.</div>
+        <div class="exercise-item">3. My friend supported me (happy) <input class="fill-input"> during the difficult time.</div>
+        <div class="exercise-item">4. He (careful) <input class="fill-input"> looks after his younger brother.</div>
+      </div>
+    </div>
+
+    <div class="grammar-rule" id="r11">
+      <div class="rule-block">
+        <h2>1️⃣1️⃣ Ing-формы: love/hate doing</h2>
+        <div class="rule"><p><b>Правило:</b> После love, like, enjoy, hate, don't mind, can't stand — форма -ing (герундий). После would like — инфинитив с to.</p></div>
+        <h3>Примеры:</h3>
+        <div class="example"><span class="en">I love spending time with my friends.</span><div class="ru">Я люблю проводить время с друзьями.</div></div>
+        <div class="example"><span class="en">She hates arguing with her parents.</span><div class="ru">Она ненавидит ссориться с родителями.</div></div>
+        <h3>✍️ Упражнение 11. Раскрой скобки (-ing или to).</h3>
+        <div class="exercise-item">1. I enjoy (celebrate) <input class="fill-input"> holidays with my family.</div>
+        <div class="exercise-item">2. She would like (make up) <input class="fill-input"> with her friend.</div>
+        <div class="exercise-item">3. He hates (have) <input class="fill-input"> arguments with his brother.</div>
+        <div class="exercise-item">4. Do you mind (help) <input class="fill-input"> me with the chores?</div>
+        <div class="exercise-item">5. They can't stand (be) <input class="fill-input"> rude to each other.</div>
+      </div>
+    </div>
+
+    <div class="grammar-rule" id="r12">
+      <div class="rule-block">
+        <h2>1️⃣2️⃣ I'd like to...</h2>
+        <div class="rule"><p><b>Правило:</b> I would like to (I'd like to) — для выражения желания, вежливого предложения. После неё — инфинитив с to.</p></div>
+        <h3>Примеры:</h3>
+        <div class="example"><span class="en">I'd like to share my feelings with my best friend.</span><div class="ru">Я хотел бы поделиться чувствами с лучшим другом.</div></div>
+        <div class="example"><span class="en">Would you like to come to my family party?</span><div class="ru">Ты хотел бы прийти на мою семейную вечеринку?</div></div>
+        <h3>✍️ Упражнение 12. Составь предложения.</h3>
+        <div class="exercise-item">1. (share) <input class="fill-input" style="width: 100%;"> my good news with you.</div>
+        <div class="exercise-item">2. (come) <input class="fill-input" style="width: 100%;"> to my birthday party?</div>
+        <div class="exercise-item">3. (make up) <input class="fill-input" style="width: 100%;"> with my sister.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORD BUILDING -->
+  <div class="tab-content" id="wordbuilding">
+    <div class="section">
+      <h2>🧩 Способы словообразования в английском языке</h2>
+      <h3>1️⃣ Аффиксация</h3>
+      <div class="rule-block" style="border-top-color: #4a90e2; margin-bottom: 15px;">
+        <h4>🔹 Существительные:</h4>
+        <ul style="padding-left: 20px; line-height: 1.9;">
+          <li><b>-er/-or/-ist</b> — профессия, деятель: teacher, visitor, artist</li>
+          <li><b>-ness/-ity/-ance/-ence/-ment/-tion/-sion</b> — абстрактные понятия: kindness, activity, performance, development, discussion</li>
+          <li><b>-ship/-hood</b> — состояние: friendship, childhood</li>
+        </ul>
+        <h4>🔹 Прилагательные:</h4>
+        <ul style="padding-left: 20px; line-height: 1.9;">
+          <li><b>-ful/-less</b> — наличие/отсутствие: careful, careless</li>
+          <li><b>-able/-ible</b> — возможность: reliable, possible</li>
+          <li><b>-ive/-ous/-al/-ic</b> — качество: creative, famous, traditional, historic</li>
+          <li><b>-ed/-ing</b> — чувства: annoyed, annoying</li>
+        </ul>
+        <h4>🔹 Наречия:</h4>
+        <ul style="padding-left: 20px; line-height: 1.9;"><li><b>-ly</b> — образ действия: carefully, politely, happily</li></ul>
+        <h4>🔹 Отрицательные приставки:</h4>
+        <ul style="padding-left: 20px; line-height: 1.9;">
+          <li><b>un-</b> — unhappy, unreliable</li>
+          <li><b>in-/im-/il-/ir-</b> — independent, impossible, illegal, irregular</li>
+          <li><b>dis-</b> — disagree, dishonest</li>
+        </ul>
+      </div>
+      <h3>2️⃣ Словосложение</h3>
+      <p>friendship, housework, teenager</p>
+      <h3>3️⃣ Конверсия</h3>
+      <p>to chat — a chat, to support — support</p>
+      <h3>💡 Лайфхаки для ОГЭ</h3>
+      <div class="rule" style="background: #fff9c4; padding: 15px; border-radius: 10px; border-left: 5px solid #ffd93d;">
+        <ul style="padding-left: 20px; line-height: 2;">
+          <li>После артикля или притяж. местоимения — существительное.</li>
+          <li>Перед существительным — прилагательное.</li>
+          <li>После be/look/feel/seem — прилагательное.</li>
+          <li>После глагола действия — наречие (-ly).</li>
+          <li>un-, in-, im-, dis- — отрицание.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section" style="border-left-color: #4a90e2;">
+      <h2>✍️ Упражнения из банка заданий ОГЭ</h2>
+
+      <div class="exercise-item">
+        <b>FA4CCC</b><br>
+        Axel is a 9-year-old Bulgarian orphan. He was adopted by a <input class="fill-input" placeholder="WEALTH"> western family. His new father works as a <input class="fill-input" placeholder="BANK"> in Sweden and he is quite rich. Axel <input class="fill-input" placeholder="REGULAR"> wrote e-mails to the director of the orphanage, Jane Smitova. He told her that he was saving his Christmas and birthday money to help his friends. Axel said that he wanted the money to be spent on presents for his former playmates. Later Jane said "I understood that <input class="fill-input" placeholder="FRIEND"> meant a lot to a small boy but I would never have imagined that Axel could be talking about such an <input class="fill-input" placeholder="POSSIBLE"> sum of money. It's so touching and we are going to spend it in a very <input class="fill-input" placeholder="CARE"> way." The boy saved £6,000.
+      </div>
+
+      <div class="exercise-item">
+        <b>A2E3C2</b><br>
+        Father's Day in the UK is on the third Sunday in June. We enjoy this day very much and always arrange a <input class="fill-input" placeholder="CELEBRATE"> at home. Our dad deserves it – he is the most <input class="fill-input" placeholder="AMAZE"> person I've ever met. He works as a train <input class="fill-input" placeholder="DRIVE"> and he loves his job, though it takes time and energy. He cannot spend lots of time with us, but when he is at home, we have a <input class="fill-input" placeholder="WONDER"> time all together.
+      </div>
+    </div>
+  </div>
+
+  <!-- WRITING -->
+  <div class="tab-content" id="writing">
+    <div class="section">
+      <h2>✉️ Задания «Письмо» из банка ОГЭ</h2>
+
+      <div class="rule-block" style="border-top-color: #ff6b9d; margin-bottom: 20px;">
+        <h3>📋 Справка: как писать электронное письмо</h3>
+        <div class="rule">
+          <p><b>Структура письма:</b></p>
+          <ol style="padding-left: 20px; line-height: 1.9;">
+            <li><b>Обращение</b> — Dear Ben, (с запятой!)</li>
+            <li><b>Благодарность</b> — Thanks for your recent email. I was very glad to hear from you again.</li>
+            <li><b>Ответы на 3 вопроса</b> — с мостиком In your email you asked me about... + связки Personally, As for, Well.</li>
+            <li><b>Дальнейшие контакты</b> — Write back soon / Keep in touch.</li>
+            <li><b>Завершающая фраза</b> — Best wishes, / All the best, (на отдельной строке).</li>
+            <li><b>Подпись</b> — только имя, на отдельной строке, без точки.</li>
+          </ol>
+          <p style="margin-top: 10px;"><b>Правила:</b> 100–120 слов (±10%). Если WHY — добавляй BECAUSE. После like/enjoy/hate — V-ing. Не переписывай From/To/Subject.</p>
+        </div>
+
+        <h3>🧩 Шаблон письма</h3>
+        <div class="example"><div class="en">Dear <b>________</b>,</div></div>
+        <div class="example"><div class="en">Thanks for your recent email. I was very glad to hear from you again.</div></div>
+        <div class="example"><div class="en">In your email you asked me about <b>________</b>. <b>Personally</b>, I think <b>________</b>. <b>As for</b> <b>________</b>, I can say that <b>________</b>. <b>Well</b>, <b>________</b>.</div></div>
+        <div class="example"><div class="en">That's all for now. Write back soon!</div></div>
+        <div class="example"><div class="en">Best wishes,<br><b>________</b></div></div>
+      </div>
+
+      <div class="email-card">
+        <h4>📧 1. Ann — Family gatherings</h4>
+        <div class="email-header"><strong>From:</strong> Ann@mail.uk<br><strong>To:</strong> Russian_friend@oge.ru<br><strong>Subject:</strong> Family gatherings…</div>
+        <p>… We have a special tradition in our family. The last weekend of every month we cook and have a meal together: my parents, my sister Jenny and me.</p>
+        <p>… How do you spend time with your family? When do you give each other presents? What do you do to help your parents about the house? …</p>
+        <p style="margin-top: 10px;"><b>Write a message to Ann and answer her 3 questions. Write 100–120 words. Remember the rules of email writing.</b></p>
+        <textarea class="text-area-answer" placeholder="✍️ Напиши свой ответ здесь..."></textarea>
+      </div>
+
+      <div class="email-card" style="border-left-color: #c86dd7;">
+        <h4>📧 2. Jane — Family gatherings</h4>
+        <div class="email-header"><strong>From:</strong> Jane@mail.uk<br><strong>To:</strong> Russian_friend@oge.ru<br><strong>Subject:</strong> Family gatherings…</div>
+        <p>… Our grandparents visited us this weekend. We had a great time and enjoyed a delicious lunch all together.</p>
+        <p>… Do you enjoy having family meals, and why yes or no? On what occasions do you have special family meals? Who is the best cook in your family? …</p>
+        <p style="margin-top: 10px;"><b>Write a message to Jane and answer her 3 questions.</b></p>
+        <textarea class="text-area-answer" placeholder="✍️ Напиши свой ответ здесь..."></textarea>
+      </div>
+
+      <div class="email-card" style="border-left-color: #55efc4;">
+        <h4>📧 3. Jane — Household chores</h4>
+        <div class="email-header"><strong>From:</strong> Jane@mail.uk<br><strong>To:</strong> Russian_friend@oge.ru<br><strong>Subject:</strong> Household chores…</div>
+        <p>… My parents work long hours and don't have enough time for the household chores. My sister and I try to help them as much as we can.</p>
+        <p>… What do you do to help your parents about the house? Who usually does the shopping in your family? What do you enjoy doing all together when you have free time? …</p>
+        <p style="margin-top: 10px;"><b>Write a message to Jane and answer her 3 questions.</b></p>
+        <textarea class="text-area-answer" placeholder="✍️ Напиши свой ответ здесь..."></textarea>
+      </div>
+
+      <div class="email-card" style="border-left-color: #ffd93d;">
+        <h4>📧 4. Ben — Housework</h4>
+        <div class="email-header"><strong>From:</strong> Ben@mail.uk<br><strong>To:</strong> Russian_friend@oge.ru<br><strong>Subject:</strong> Housework…</div>
+        <p>… I am a bit sad because I have just quarrelled with my mum. I didn't want to wash the dishes and make my bed because there was an interesting film on TV.</p>
+        <p>… Do you think children should help their parents with the housework, why or why not? What do you usually do about the house? What housework do you dislike? …</p>
+        <p style="margin-top: 10px;"><b>Write a message to Ben and answer his 3 questions.</b></p>
+        <textarea class="text-area-answer" placeholder="✍️ Напиши свой ответ здесь..."></textarea>
+      </div>
+
+      <div class="email-card" style="border-left-color: #ff6b9d;">
+        <h4>📧 5. Lily — Family holidays</h4>
+        <div class="email-header"><strong>From:</strong> Lily@mail.uk<br><strong>To:</strong> Russian_friend@oge.ru<br><strong>Subject:</strong> Family holidays…</div>
+        <p>… Yesterday we celebrated Thanksgiving. This is one of our favourite family holidays when we all get together. And my mother makes a wonderful pumpkin pie!</p>
+        <p>… What holiday do you like most and why? How do you celebrate your birthday? What present would you like to get for your next birthday? …</p>
+        <p style="margin-top: 10px;"><b>Write a message to Lily and answer her 3 questions.</b></p>
+        <textarea class="text-area-answer" placeholder="✍️ Напиши свой ответ здесь..."></textarea>
+      </div>
+
+      <div class="email-card" style="border-left-color: #a29bfe;">
+        <h4>📧 6. Andrew — Mother's Day</h4>
+        <div class="email-header"><strong>From:</strong> Andrew@mail.uk<br><strong>To:</strong> Russian_friend@oge.ru<br><strong>Subject:</strong> Mother's Day…</div>
+        <p>… It's Mother's Day next week, or Mothering Sunday. Dad and I are busy preparing a real surprise holiday for Mum.</p>
+        <p>… How is Mother's Day celebrated in Russia? What presents do you usually give to your Mum? What other family holidays do you celebrate? …</p>
+        <p style="margin-top: 10px;"><b>Write a message to Andrew and answer his 3 questions.</b></p>
+        <textarea class="text-area-answer" placeholder="✍️ Напиши свой ответ здесь..."></textarea>
+      </div>
+
+      <div class="email-card" style="border-left-color: #fdcb6e;">
+        <h4>📧 7. Ben — Presents</h4>
+        <div class="email-header"><strong>From:</strong> Ben@mail.uk<br><strong>To:</strong> Russian_friend@oge.ru<br><strong>Subject:</strong> Presents…</div>
+        <p>… My granny is such a kind person. She always brings us presents for everything we celebrate.</p>
+        <p>… What holidays do you celebrate with your family? What is your favourite holiday and why? What is the best present you've ever received? …</p>
+        <p style="margin-top: 10px;"><b>Write a message to Ben and answer his 3 questions.</b></p>
+        <textarea class="text-area-answer" placeholder="✍️ Напиши свой ответ здесь..."></textarea>
+      </div>
+
+      <div class="email-card" style="border-left-color: #ff7675;">
+        <h4>📧 8. Ben — Holidays</h4>
+        <div class="email-header"><strong>From:</strong> Ben@mail.uk<br><strong>To:</strong> Russian_friend@oge.ru<br><strong>Subject:</strong> Holidays…</div>
+        <p>… I've just returned from China. They were celebrating the Chinese New Year there.</p>
+        <p>… What are the most popular holidays in Russia? What is your favourite holiday and why? How do you celebrate it? …</p>
+        <p style="margin-top: 10px;"><b>Write a message to Ben and answer his 3 questions.</b></p>
+        <textarea class="text-area-answer" placeholder="✍️ Напиши свой ответ здесь..."></textarea>
+      </div>
+
+      <div class="email-card" style="border-left-color: #00b894;">
+        <h4>📧 9. Ann — My best friend</h4>
+        <div class="email-header"><strong>From:</strong> Ann@mail.uk<br><strong>To:</strong> Russian_friend@oge.ru<br><strong>Subject:</strong> My best friend…</div>
+        <p>… Oh, my friend is so charming! Everybody in the class is ready to help her. But, you know, I sometimes think she's just using people to get what she wants.</p>
+        <p>… What kind of person is your best friend? When and where did you meet? How do you spend time together? …</p>
+        <p style="margin-top: 10px;"><b>Write a message to Ann and answer her 3 questions.</b></p>
+        <textarea class="text-area-answer" placeholder="✍️ Напиши свой ответ здесь..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHECKLIST -->
+  <div class="tab-content" id="checklist">
+    <div class="cl-header">
+      <div class="emojis">🌟 🐻 ⭐ 🐻 🌟 🐻 ⭐</div>
+      <h2>ЧЕК-ЛИСТ ПО БЛОКУ А</h2>
+      <div class="sub">Взаимоотношения в семье и с друзьями</div>
+      <div class="sub" style="color:#a29bfe; margin-top:4px;">Ты на финишной прямой! Отмечай каждый шаг — и блок покорён 🚀</div>
+    </div>
+
+    <div class="cl-section lex">
+      <h3>📚 Лексика</h3>
+      <div class="cl-item"><span class="mark">⬜</span> Изучил(а) существительные по теме «Семья и друзья»</div>
+      <div class="cl-item"><span class="mark">⬜</span> Изучил(а) прилагательные для описания характера и отношений</div>
+      <div class="cl-item"><span class="mark">⬜</span> Изучил(а) глаголы и фразовые глаголы по теме</div>
+      <div class="cl-item"><span class="mark">⬜</span> Изучил(а) наречия и фразы для выражения чувств</div>
+      <div class="cl-item"><span class="mark">⬜</span> Отработал(а) лексику в квизлет-карточках</div>
+      <div class="cl-item"><span class="mark">⬜</span> Составил(а) собственные предложения с новыми словами</div>
+    </div>
+
+    <div class="cl-section listen">
+      <h3>🎧 Аудирование и видео</h3>
+      <div class="cl-item"><span class="mark">⬜</span> Посмотрел(а) видео от носителя по теме</div>
+      <div class="cl-item"><span class="mark">⬜</span> Обсудил(а) видео и ответил(а) на вопросы</div>
+      <div class="cl-item"><span class="mark">⬜</span> Выполнил(а) задания на аудирование из Prepare 4/5</div>
+      <div class="cl-item"><span class="mark">⬜</span> Слушал(а) речь носителей в формате экзаменационных заданий</div>
+    </div>
+
+    <div class="cl-section read">
+      <h3>📖 Чтение и упражнения</h3>
+      <div class="cl-item"><span class="mark">⬜</span> Прочитал(а) авторский текст по теме блока</div>
+      <div class="cl-item"><span class="mark">⬜</span> Нашёл(а) в тексте новые слова и знакомую грамматику</div>
+      <div class="cl-item"><span class="mark">⬜</span> Выполнил(а) упражнения к тексту (заголовки, True/False/Not Stated)</div>
+      <div class="cl-item"><span class="mark">⬜</span> Прочитал(а) текст вслух</div>
+      <div class="cl-item"><span class="mark">⬜</span> Выполнил(а) упражнения на словообразование</div>
+    </div>
+
+    <div class="cl-section speak">
+      <h3>🎭 Говорение</h3>
+      <div class="cl-item"><span class="mark">⬜</span> Отыграл(а) свою роль в ролевой игре</div>
+      <div class="cl-item"><span class="mark">⬜</span> Принял(а) участие в интервью из банка заданий</div>
+      <div class="cl-item"><span class="mark">⬜</span> Подготовил(а) монолог по теме блока</div>
+      <div class="cl-item"><span class="mark">⬜</span> Спел(а) песню на английском языке</div>
+    </div>
+
+    <div class="cl-section write">
+      <h3>✉️ Письмо</h3>
+      <div class="cl-item"><span class="mark">⬜</span> Написал(а) письмо другу по теме блока</div>
+    </div>
+
+    <div class="cl-section gram">
+      <h3>📝 Грамматика</h3>
+      <div class="cl-gram-grid">
+        <div>
+          <div class="cl-item"><span class="mark">⬜</span> Типы предложений</div>
+          <div class="cl-item"><span class="mark">⬜</span> Present Simple</div>
+          <div class="cl-item"><span class="mark">⬜</span> Present Continuous</div>
+          <div class="cl-item"><span class="mark">⬜</span> Present Simple vs Continuous</div>
+          <div class="cl-item"><span class="mark">⬜</span> Have got</div>
+          <div class="cl-item"><span class="mark">⬜</span> Личные местоимения</div>
+        </div>
+        <div>
+          <div class="cl-item"><span class="mark">⬜</span> Притяжательные местоимения</div>
+          <div class="cl-item"><span class="mark">⬜</span> Притяжательный падеж -'s</div>
+          <div class="cl-item"><span class="mark">⬜</span> Предлоги времени at/on/in</div>
+          <div class="cl-item"><span class="mark">⬜</span> Наречия</div>
+          <div class="cl-item"><span class="mark">⬜</span> Ing-формы: love/hate doing</div>
+          <div class="cl-item"><span class="mark">⬜</span> I'd like to...</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cl-finish">
+      <div class="top">🏆 ТЫ СПРАВИЛСЯ(АСЬ) С БЛОКОМ А!</div>
+      <div class="bottom">Каждый день — шаг к большой цели. Твой труд и упорство творят чудеса 💪✨</div>
+    </div>
+  </div>
+
+  <!-- HOMEWORK -->
+  <div class="tab-content" id="homework">
+    <div class="section">
+      <h2>📂 Материалы для домашки</h2>
+      <p>Задания из открытого банка ОГЭ для дополнительной тренировки.</p>
+    </div>
+
+    <div class="hw-sub-tabs">
+      <div class="hw-sub-tab active" data-hw="hw-listen">🎧 Аудирование</div>
+      <div class="hw-sub-tab" data-hw="hw-read">📖 Чтение</div>
+      <div class="hw-sub-tab" data-hw="hw-gram">📝 Грамматика</div>
+      <div class="hw-sub-tab" data-hw="hw-word">🧩 Словообразование</div>
+    </div>
+
+    <!-- HW LISTENING -->
+    <div class="hw-content active" id="hw-listen">
+      <!-- AUDIO 1: A45BFC -->
+      <div class="section" style="border-left-color: #4a90e2;">
+        <h3>🎧 Audio 1 (A45BFC)</h3>
+        <div class="media-block audio">
+          <div class="media-label">🔊 Аудио 1</div>
+          <iframe src="https://drive.google.com/file/d/1_4atJwRhxwX4AJzYvxquxkZtWmWQcRr5/preview" allow="autoplay"></iframe>
+        </div>
+
+        <h4 style="color:#4a3f8f; margin-top:20px;">Task 1-4. Multiple choice</h4>
+        <div class="exercise-item">1. The hiking instructor advises the hikers on ...<br>1) how to cook food on a fire. 2) what to wear on the hiking trip. 3) how to find the way through the forest. <input class="fill-input" placeholder="№"></div>
+        <div class="exercise-item">2. What present does Mary suggest buying for their mother?<br>1) A pot plant. 2) An umbrella. 3) A cherry cake. <input class="fill-input" placeholder="№"></div>
+        <div class="exercise-item">3. Nancy doesn't want to participate in the family business because ...<br>1) she is allergic to cats. 2) she doesn't like animals. 3) she's chosen another profession. <input class="fill-input" placeholder="№"></div>
+        <div class="exercise-item">4. What are Alice and Ron going to have for lunch?<br>1) Pancakes. 2) Spaghetti. 3) Sandwiches. <input class="fill-input" placeholder="№"></div>
+
+        <h4 style="color:#4a3f8f; margin-top:20px;">Task 5. Подбор рубрик (E5C8A4)</h4>
+        <p>Подберите к каждому высказыванию рубрику из списка 1–6. Одна лишняя.</p>
+        <div class="rule-block" style="border-top-color: #4a90e2;">
+          <p>1. I avoid these kinds of films</p>
+          <p>2. I choose wisely</p>
+          <p>3. I dislike cinemas</p>
+          <p>4. I find cinemas expensive</p>
+          <p>5. I learn from these films</p>
+          <p>6. I recommend this film</p>
+        </div>
+        <div class="exercise-item">A <input class="fill-input" placeholder="№"></div>
+        <div class="exercise-item">B <input class="fill-input" placeholder="№"></div>
+        <div class="exercise-item">C <input class="fill-input" placeholder="№"></div>
+        <div class="exercise-item">D <input class="fill-input" placeholder="№"></div>
+        <div class="exercise-item">E <input class="fill-input" placeholder="№"></div>
+
+        <h4 style="color:#4a3f8f; margin-top:20px;">Task 6. Заполни таблицу</h4>
+        <div class="exercise-item">Current job: <input class="fill-input"></div>
+        <div class="exercise-item">Number of jobs he/she has done: <input class="fill-input"></div>
+        <div class="exercise-item">The foreign language he/she speaks: <input class="fill-input"></div>
+        <div class="exercise-item">Hobby: <input class="fill-input"></div>
+        <div class="exercise-item">The musical instrument he/she plays: <input class="fill-input"></div>
+        <div class="exercise-item">Regular sports activity: <input class="fill-input"></div>
+      </div>
+
+      <!-- AUDIO 2: EE3CFC -->
+      <div class="section" style="border-left-color: #c86dd7;">
+        <h3>🎧 Audio 2 (EE3CFC)</h3>
+        <div class="media-block audio">
+          <div class="media-label">🔊 Аудио 2</div>
+          <iframe src="https://drive.google.com/file/d/11KuFqqHq10narPrivPXWoG0bbygticML/preview" allow="autoplay"></iframe>
+        </div>
+
+        <h4 style="color:#4a3f8f; margin-top:20px;">Task 1-4. Multiple choice</h4>
+        <div class="exercise-item">1. What present will you get, if you buy something today?<br>1) A tent. 2) A bicycle. 3) A watch. <input class="fill-input" placeholder="№"></div>
+        <div class="exercise-item">2. On Sunday, Sophie is invited ...<br>1) to attend an event in the sports centre. 2) to take part in a swimming competition. 3) to go to the city concert. <input class="fill-input" placeholder="№"></div>
+        <div class="exercise-item">3. Why did Sally miss Alex's call yesterday?<br>1) Sally's phone was not working properly. 2) Sally had muted her phone for a concert. 3) Sally had left her phone at home. <input class="fill-input" placeholder="№"></div>
+        <div class="exercise-item">4. What is Mark's favourite subject?<br>1) Maths. 2) Science. 3) French. <input class="fill-input" placeholder="№"></div>
+
+        <h4 style="color:#4a3f8f; margin-top:20px;">Task 5. Подбор рубрик (386CD7)</h4>
+        <p>Подберите к каждому высказыванию рубрику из списка 1–6. Одна лишняя.</p>
+        <div class="rule-block" style="border-top-color: #c86dd7;">
+          <p>1. They should be unplanned</p>
+          <p>2. They must have tasty food</p>
+          <p>3. They should be quite small</p>
+          <p>4. They must be memorable</p>
+          <p>5. They need simple entertainment</p>
+          <p>6. They need to be planned</p>
+        </div>
+        <div class="exercise-item">A <input class="fill-input" placeholder="№"></div>
+        <div class="exercise-item">B <input class="fill-input" placeholder="№"></div>
+        <div class="exercise-item">C <input class="fill-input" placeholder="№"></div>
+        <div class="exercise-item">D <input class="fill-input" placeholder="№"></div>
+        <div class="exercise-item">E <input class="fill-input" placeholder="№"></div>
+
+        <h4 style="color:#4a3f8f; margin-top:20px;">Task 6. Заполни таблицу</h4>
+        <div class="exercise-item">Hobby: <input class="fill-input"></div>
+        <div class="exercise-item">The country he/she wants to visit: <input class="fill-input"></div>
+        <div class="exercise-item">Current job: <input class="fill-input"></div>
+        <div class="exercise-item">Age of the respondent: <input class="fill-input"></div>
+        <div class="exercise-item">Favourite dish: <input class="fill-input"></div>
+        <div class="exercise-item">Regular sports activity: <input class="fill-input"></div>
+      </div>
+    </div>
+
+    <!-- HW READING -->
+    <div class="hw-content" id="hw-read">
+      <!-- TASK 1: F6224C - headings -->
+      <div class="section" style="border-left-color: #4a90e2;">
+        <h3>📖 Reading (headings) — F6224C</h3>
+        <p><b>Determine which of the texts A–F contains answers to your questions 1–7. One question will remain unanswered. Put your answers in the table.</b></p>
+
+        <div class="rule-block" style="border-top-color: #4a90e2;">
+          <h4>Questions:</h4>
+          <ol style="padding-left: 20px; line-height: 1.9;">
+            <li>What nature-friendly ideas started a new branch in the tourism business?</li>
+            <li>What means of transport is the most popular with tourists?</li>
+            <li>Why can tourism be dangerous to nature?</li>
+            <li>What are the reasons that make people go on a trip?</li>
+            <li>What kind of tourism is getting popular with elderly people?</li>
+            <li>Why does travelling make people smarter?</li>
+            <li>What are the ways to save money while travelling?</li>
+          </ol>
+        </div>
+
+        <div class="reading-block" style="border-left-color: #4a90e2; margin-top: 20px;">
+          <p><b>A.</b> Tourism has become a popular activity. Indeed, nowadays people travel more, and further, than they used to. The main reasons for tourism are: recreation, leisure and business. When travelling for recreation, people want to escape their stressful daily routine and to relax. Beach holidays are an example of such tourism. Business trips involve going to a distant place in order to settle business issues.</p>
+        </div>
+        <div class="reading-block" style="border-left-color: #c86dd7;">
+          <p><b>B.</b> Whether on a business trip or on a honeymoon, people want to explore the place they are in. They go on excursions, try new activities like diving or mountain climbing and learn about the historical background of the place and its cultural peculiarities. Sometimes they find out amazing facts about people and places and about themselves too! In fact, when people travel, they broaden their horizons.</p>
+        </div>
+        <div class="reading-block" style="border-left-color: #55efc4;">
+          <p><b>C.</b> A new branch of tourism is ecotourism. It involves visiting relatively untouched places in remote areas. Ecotourism is often misinterpreted as any form of tourism involving wildlife — but it's completely different from jungle tourism or safari. Eco-tourists are against disturbing the environment; even taking photos is not recommended. Take only memories and leave only footprints is a very popular slogan for them.</p>
+        </div>
+        <div class="reading-block" style="border-left-color: #ffd93d;">
+          <p><b>D.</b> By educational tourism, most people mean different versions of Learn and Travel Programmes for students. But it's not only for the young and brave. Lots of training and educational programmes for adults are offered in different corners of the world. Retired people participate in these programmes too. They gladly enroll on overseas courses ranging from gardening and design to computer skills and programming.</p>
+        </div>
+        <div class="reading-block" style="border-left-color: #fd79a8;">
+          <p><b>E.</b> If possible, consider means of transport other than the plane. Rapidly increasing numbers of flights have put the environment in danger. Planes pollute the air, which results in global warming. In fact, tourism is not harmless fun as many may think: new airports and tourist infrastructure, pollution and crowds of noisy tourists make wild animals migrate, which may decrease their population or even make them extinct.</p>
+        </div>
+        <div class="reading-block" style="border-left-color: #a29bfe;">
+          <p><b>F.</b> With all its benefits, travelling is still a very expensive activity and may not fit every budget. To reduce the costs, avoid travelling in high season when flight tickets and hotels are overpriced. Remember that, along with expensive destinations, there are less prestigious but even more interesting places. When planning a trip, find out about low-cost airlines, discounts and special offers.</p>
+        </div>
+
+        <table class="answer-table">
+          <tr>
+            <th>Text</th>
+            <th>A</th>
+            <th>B</th>
+            <th>C</th>
+            <th>D</th>
+            <th>E</th>
+            <th>F</th>
+          </tr>
+          <tr>
+            <td><b>Question</b></td>
+            <td><input></td>
+            <td><input></td>
+            <td><input></td>
+            <td><input></td>
+            <td><input></td>
+            <td><input></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- TASK 2: E4C94E - headings -->
+      <div class="section" style="border-left-color: #c86dd7;">
+        <h3>📖 Reading (headings) — E4C94E</h3>
+        <p><b>Determine which of the texts A–F contains answers to your questions 1–7. One question will remain unanswered. Put your answers in the table.</b></p>
+
+        <div class="rule-block" style="border-top-color: #c86dd7;">
+          <h4>Questions:</h4>
+          <ol style="padding-left: 20px; line-height: 1.9;">
+            <li>What is the capital of the Falkland Islands?</li>
+            <li>Where can you learn about the islands' history?</li>
+            <li>What is the emblem of the Falkland Islands?</li>
+            <li>What do the local people do for a living?</li>
+            <li>What energy resources are used on the islands?</li>
+            <li>What is the educational policy of the Falkland Islands?</li>
+            <li>What was the result of the conflict between Argentina and the UK?</li>
+          </ol>
+        </div>
+
+        <div class="reading-block" style="border-left-color: #4a90e2; margin-top: 20px;">
+          <p><b>A.</b> About 250 miles off the coast of South America lie the Falkland Islands, a British overseas territory. About 3,000 people live on the islands. Like most isolated communities around the world, they are always pleased to welcome tourists. The people of the Falkland Islands mostly work in sheep farming and fishing.</p>
+        </div>
+        <div class="reading-block" style="border-left-color: #c86dd7;">
+          <p><b>B.</b> Everything outside Stanley, known locally as Camp, is home to numerous farms and settlements spread across the islands. In fact, over three quarters of the population live in Stanley. Although one of the smallest capitals in the world, Stanley provides a variety of supermarkets, excellent restaurants and hotels, a swimming pool, gym and golf course.</p>
+        </div>
+        <div class="reading-block" style="border-left-color: #55efc4;">
+          <p><b>C.</b> Open whenever tour ships are in the port, the Falkland Islands Museum contains artifacts from everyday life, natural history samples and a fine collection relating to the islands' shipwrecks. Outdoor exhibition sites include the Reclus Hut, originally made in Stanley, then shipped to Antarctica and set up there in 1956. Forty years later the famous house was brought back.</p>
+        </div>
+        <div class="reading-block" style="border-left-color: #ffd93d;">
+          <p><b>D.</b> There are only about 380 children of school age living on the islands. For them, there is a primary and a secondary school in Stanley and three small settlement schools on large farms. Other rural pupils are taught by 'travelling' teachers. Schooling is free and compulsory for children between five and sixteen years of age. The government pays for older students to attend colleges, usually in the UK.</p>
+        </div>
+        <div class="reading-block" style="border-left-color: #fd79a8;">
+          <p><b>E.</b> The Falkland Islands government is taking advantage of cheap wind power. Since 1996, the government has been investing in the development of alternative sources of energy and can already enjoy the results. The Islands have experimented with other forms of energy, including hydro-electric and solar power. However, these forms cannot match the effectiveness of wind power yet.</p>
+        </div>
+        <div class="reading-block" style="border-left-color: #a29bfe;">
+          <p><b>F.</b> The Falklands War was fought in 1982 between Argentina and the United Kingdom. It started with the Argentine invasion and occupation of the Falkland Islands and South Georgia. The war lasted 74 days and ended with an Argentine defeat. However, Argentina still has not fully given up its claim to the territory of the islands.</p>
+        </div>
+
+        <table class="answer-table">
+          <tr>
+            <th>Text</th>
+            <th>A</th>
+            <th>B</th>
+            <th>C</th>
+            <th>D</th>
+            <th>E</th>
+            <th>F</th>
+          </tr>
+          <tr>
+            <td><b>Question</b></td>
+            <td><input></td>
+            <td><input></td>
+            <td><input></td>
+            <td><input></td>
+            <td><input></td>
+            <td><input></td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- TASK 3: The Owl - T/F/NS -->
+      <div class="section" style="border-left-color: #55efc4;">
+        <h3>📖 Reading (T/F/NS) — The Owl (1EFDF2)</h3>
+        <p><b>Read the text and decide if the statements given below are True (1), False (2) or Not Stated (3).</b></p>
+
+        <div class="reading-block" style="border-left-color: #55efc4;">
+          <p>Joan Harrison was walking along the street. She was shy and always felt lonely and upset. Joan worked as a secretary in an office in the city centre. It was lunch time and she went out to get some air. She was looking absently at the shop-windows when she saw a brown wooden owl in one of them. Suddenly Joan stopped. Joan was totally indifferent to birds and she had never understood people who collected useless statues. But for some reason she could not take her eyes off the owl. The wooden owl drew Joan to itself.</p>
+          <p>Joan decided to buy the owl. She earned a little, just to pay for her room and food. She couldn't afford new clothes. Even a ticket to the cinema was a heavy expense for her. But this time Joan was sure that she had to buy the wooden owl. Joan opened the door of the shop. She asked the shop assistant about the price of the wooden owl. It was fifty pounds. Joan understood that it was sheer madness to buy such an expensive wooden bird. But she did it without any hesitation.</p>
+          <p>The next morning she left her house in a very good mood. Now, having the owl at home, Joan made it a habit to say good-bye and touch the owl's head before leaving. Amazingly, after this simple gesture she was cheerful and energetic the whole day. One morning, when patting the owl on the head, Joan remembered her wish to join the evening pottery class at college. She had often thought about it but always changed her mind at the last moment. Now she decided to fulfill her wish.</p>
+          <p>At the pottery class Joan achieved considerable results. Her teacher said she had a unique style. Nobody knew that she worked hard at home. Under the owl's observation Joan experimented with forms and colours. Once she took part in the students' show at the college, and the Museum of Arts asked her to sell her works for two thousand pounds. The sum covered all her debts and she could afford to buy a new dress and shoes and even more.</p>
+          <p>The next step was the annual National Art Festival, at which a secretary, Joan Harrison, presented her personal exhibition. Her fame and income were growing. Joan left her office and became a potter. A year later she and the art director of the museum were happily married. They moved to a large country house and now Joan had her own pottery.</p>
+          <p>Joan took the lucky owl with her. It took its honorary place in the large living room. In her last years she often remembered the shop where she had bought the owl, her evening classes and her first steps in pottery. Joan was so proud of the owl that each piece of her pottery had a picture of the owl on it. Lots of famous artists and important people visited Joan and her husband, but Joan never gave her owl to anybody until her dying day.</p>
+        </div>
+
+        <div class="tfns-item"><p><b>1.</b> Joan collected small statues of birds.</p><div class="tfns-options"><button class="tfns-btn">True</button><button class="tfns-btn">False</button><button class="tfns-btn">Not stated</button></div></div>
+        <div class="tfns-item"><p><b>2.</b> Joan had a well-paid job.</p><div class="tfns-options"><button class="tfns-btn">True</button><button class="tfns-btn">False</button><button class="tfns-btn">Not stated</button></div></div>
+        <div class="tfns-item"><p><b>3.</b> The wooden owl improved Joan's mood.</p><div class="tfns-options"><button class="tfns-btn">True</button><button class="tfns-btn">False</button><button class="tfns-btn">Not stated</button></div></div>
+        <div class="tfns-item"><p><b>4.</b> Joan joined the pottery class because of her friends' advice.</p><div class="tfns-options"><button class="tfns-btn">True</button><button class="tfns-btn">False</button><button class="tfns-btn">Not stated</button></div></div>
+        <div class="tfns-item"><p><b>5.</b> Joan successfully participated in art exhibitions.</p><div class="tfns-options"><button class="tfns-btn">True</button><button class="tfns-btn">False</button><button class="tfns-btn">Not stated</button></div></div>
+        <div class="tfns-item"><p><b>6.</b> There was an image of the owl on Joan's every work.</p><div class="tfns-options"><button class="tfns-btn">True</button><button class="tfns-btn">False</button><button class="tfns-btn">Not stated</button></div></div>
+        <div class="tfns-item"><p><b>7.</b> After Joan's death the wooden owl disappeared from her house.</p><div class="tfns-options"><button class="tfns-btn">True</button><button class="tfns-btn">False</button><button class="tfns-btn">Not stated</button></div></div>
+      </div>
+
+      <!-- TASK 4: Cambridge University - T/F/NS -->
+      <div class="section" style="border-left-color: #a29bfe;">
+        <h3>📖 Reading (T/F/NS) — Cambridge University (63EEF5)</h3>
+        <p><b>Read the text and decide if the statements given below are True (1), False (2) or Not Stated (3).</b></p>
+
+        <div class="reading-block" style="border-left-color: #a29bfe;">
+          <p>Cambridge University is the second-oldest university in the English-speaking world (after the University of Oxford) and the seventh-oldest in the world. The history of Cambridge University began in 1209 when several hundred students arrived in the little town of Cambridge after having walked 60 miles from Oxford. These students were all churchmen and had been studying in Oxford at that city's well-known schools. Life at Oxford was hard for there was constant trouble, even fighting, between the citizens of the town and the students. Then one day a student accidentally killed a man of the town. The Mayor arrested three other students who were innocent and they were put to death. In protest, many students left Oxford, some of them went to Cambridge. And so the new University began.</p>
+          <p>It was Cambridge University. Of course, there were no Colleges in those early days and student life was very different from what it is now. The students were of all ages and came from anywhere and everywhere. Life in College was strict. The students were forbidden to play games, to sing (except sacred music), to hunt or fish or even to dance. Books were very rare and all the lessons were in the Latin language which students were supposed to speak even among themselves. In 1440 King Henry VI founded King's College, and other colleges followed.</p>
+          <p>Nowadays there are more than 30 different colleges, including five for women students and several mixed colleges, in the University. The number of students in colleges is different: from 30 to 400 or 500.</p>
+          <p>The training course lasts 4 years. The academic year is divided into 3 terms. The students study natural and technical sciences, law, history, languages, geography, medicine, economics, agriculture, music and many other subjects. After 3 years of study a student may proceed to a Bachelor's degree, and later to the degrees of Master and Doctor.</p>
+          <p>There are many ancient traditions that are still observed at Cambridge. For example, the students are required to wear gowns at lectures, in the University library, in the street in the evening, for dinners in the colleges and for official visits.</p>
+          <p>All the students must pay for their education – classes, examinations, books, laboratories, university hostel, the use of libraries. The cost is high. It depends on college and university speciality. Very few students get grants.</p>
+          <p>Many great men studied at Cambridge, for example, Bacon (the philosopher), Milton and Byron (the poets), Cromwell (the soldier), Newton (the outstanding physicist), Darwin (who is famous for his theory of evolution) and Kapitsa (the famous Russian physicist).</p>
+        </div>
+
+        <div class="tfns-item"><p><b>1.</b> Cambridge University was founded earlier than the University of Oxford.</p><div class="tfns-options"><button class="tfns-btn">True</button><button class="tfns-btn">False</button><button class="tfns-btn">Not Stated</button></div></div>
+        <div class="tfns-item"><p><b>2.</b> The citizens of Cambridge were happy to get the university in their town.</p><div class="tfns-options"><button class="tfns-btn">True</button><button class="tfns-btn">False</button><button class="tfns-btn">Not Stated</button></div></div>
+        <div class="tfns-item"><p><b>3.</b> Nowadays there are several female colleges in Cambridge University.</p><div class="tfns-options"><button class="tfns-btn">True</button><button class="tfns-btn">False</button><button class="tfns-btn">Not Stated</button></div></div>
+        <div class="tfns-item"><p><b>4.</b> At present, the students of Cambridge University have to study Latin.</p><div class="tfns-options"><button class="tfns-btn">True</button><button class="tfns-btn">False</button><button class="tfns-btn">Not Stated</button></div></div>
+        <div class="tfns-item"><p><b>5.</b> The students of Cambridge University have their own dress code.</p><div class="tfns-options"><button class="tfns-btn">True</button><button class="tfns-btn">False</button><button class="tfns-btn">Not Stated</button></div></div>
+        <div class="tfns-item"><p><b>6.</b> The education at Cambridge University is free.</p><div class="tfns-options"><button class="tfns-btn">True</button><button class="tfns-btn">False</button><button class="tfns-btn">Not Stated</button></div></div>
+        <div class="tfns-item"><p><b>7.</b> There are famous scientists among the graduates of Cambridge University.</p><div class="tfns-options"><button class="tfns-btn">True</button><button class="tfns-btn">False</button><button class="tfns-btn">Not Stated</button></div></div>
+      </div>
+    </div>
+
+    <!-- HW GRAMMAR -->
+    <div class="hw-content" id="hw-gram">
+      <div class="section" style="border-left-color: #4a90e2;">
+        <h3>📝 7D754B</h3>
+        <div class="exercise-item">It was late at night but the light was on in Ted's room. When I <input class="fill-input" placeholder="COME"> in, he didn't even turn to me. I looked at his monitor and realized that he <input class="fill-input" placeholder="SURF"> the Internet for job vacancies. "Why do you need a job?" I asked. "You <input class="fill-input" placeholder="EMPLOY"> by Mr. Green only a week ago as far as I remember." "Yes, I was. I got a job of a waiter in his restaurant. But I <input class="fill-input" placeholder="LOSE"> that job already. They said I was rude to a client."</div>
+      </div>
+
+      <div class="section" style="border-left-color: #c86dd7;">
+        <h3>📝 3FAB4D</h3>
+        <div class="exercise-item">The academic term was coming to its end and Kate decided to arrange a party to celebrate the coming holidays. To be frank, there <input class="fill-input" placeholder="BE"> one more reason for the party. Kate wanted her classmates to meet someone from her family. She was sure it would impress <input class="fill-input" placeholder="THEY"> and would help her popularity. Kate <input class="fill-input" placeholder="MAKE"> sandwiches in the kitchen when Hugo came in. "It looks like I'm the guest, doesn't it?" Hugo looked embarrassed. "Sorry for coming so early." "Oh, it's ok," said Kate, "Come in! You <input class="fill-input" placeholder="ONE"> me in the kitchen, won't you?" "Sure," Hugo entered the room and <input class="fill-input" placeholder="HELP"> in surprise. "Are you saying you made all this yourself?" On the table there was a huge pie. It <input class="fill-input" placeholder="STOP"> with different fruit and looked fantastic. "No," Kate looked pleased with his reaction. "My cousin helped me. She <input class="fill-input" placeholder="DECORATE"> for the shop. She'll be back any minute. The front door opened and a girl entered. Hugo understood that he <input class="fill-input" placeholder="LEAVE"> her many times in different TV programmes for teenagers. "A TV star?" Hugo sounded so silly that both girls burst out laughing.</div>
+      </div>
+
+      <div class="section" style="border-left-color: #ffd93d;">
+        <h3>📝 8A8342</h3>
+        <div class="exercise-item">I was happy to take part in the exchange programme and to go to college in Britain. An opportunity to spend two <input class="fill-input" placeholder="MONTH"> in London sounded fantastic. Our teacher told us that we <input class="fill-input" placeholder="LIVE"> in a student hostel. It was going to be <input class="fill-input" placeholder="CONVENIENT"> than staying with a host family as the hostel was very close to the college. When we arrived in London, the thing we had <input class="fill-input" placeholder="ONE"> was a bus excursion round the British capital. Unfortunately, when we <input class="fill-input" placeholder="PASS"> Westminster Abbey, it started to rain hard. We had to go down to the lower level of our double-decker and we <input class="fill-input" placeholder="NOT/MANAGE"> to enjoy the wonderful sights. Anyway, London is very impressive. People from all over the world live there. Some of <input class="fill-input" placeholder="THEY"> come as tourists, others choose this place to study or to work in. It is a dynamic multicultural city, though there <input class="fill-input" placeholder="BE"> so many historical buildings in it. Amazingly, many of the houses <input class="fill-input" placeholder="BUILD"> centuries ago!</div>
+      </div>
+
+      <div class="section" style="border-left-color: #55efc4;">
+        <h3>📝 03C7FF</h3>
+        <div class="exercise-item">I was sitting in an arm-chair and watching my sister Alison. She was getting ready for a party. Alison was 15 years <input class="fill-input" placeholder="OLD"> than me and she always treated me like a child. Alison took her jewellery box from the table. The box <input class="fill-input" placeholder="MAKE"> of wood and had colourful stones on the top. "You know you must never touch it, right?" Alison said. "If the box was mine, I <input class="fill-input" placeholder="ALLOW"> you to touch it whenever you wanted," I answered. Alison said nothing to that. When she put on her jewelry, she looked like a princess. She moved gracefully as if her <input class="fill-input" placeholder="FOOT"> didn't touch the ground. Alison kissed me goodnight and left. I tried to resist my curiosity but I <input class="fill-input" placeholder="NOT/CAN"> I opened the box.</div>
+      </div>
+
+      <div class="section" style="border-left-color: #a29bfe;">
+        <h3>📝 5A2EFB</h3>
+        <div class="exercise-item">Annie was waiting for her guests. Her birthday was on 25th December and she felt this was both lucky and unlucky. It <input class="fill-input" placeholder="BE"> great to have her birthday on a special day like Christmas. But, on the other hand, very few of Annie's friends came to her party. Most of them had family plans for that day. The doorbell <input class="fill-input" placeholder="RING"> and her classmate, Brian, appeared. He had a plastic bag in his hand. "Happy birthday, Annie!" Brian said and got an old oil lamp out of his bag. Annie <input class="fill-input" placeholder="NOT/CAN"> hide her surprise: "What's this? And where did you buy it?" A magic lamp. And I didn't buy it. It <input class="fill-input" placeholder="FIND"> in the attic of an old country house a year ago. My friend found it when they <input class="fill-input" placeholder="REPAIR"> the house. He says if you light the lamp and make a wish, the wish <input class="fill-input" placeholder="COME"> true. It works particularly well with reasonable wishes that are not too big for the lamp. Its magic is not very strong. Annie laughed aloud. "I've never got a present <input class="fill-input" placeholder="ORIGINAL"> than this. Ok, let's test your lamp." Annie lit it and said: "I wish the whole class would come to party today". As soon as she <input class="fill-input" placeholder="SAY"> it, the doorbell rang impatiently.</div>
+      </div>
+
+      <div class="section" style="border-left-color: #fd79a8;">
+        <h3>📝 A9F62E</h3>
+        <div class="exercise-item">Emma lived in a big city and worked for a large company. Her days were usually very busy – she hardly <input class="fill-input" placeholder="CAN"> find half an hour for lunch. However, at weekends she <input class="fill-input" placeholder="FEEL"> bored and lonely. Emma had moved to the city because of her job. Only two months before she had thought she was the <input class="fill-input" placeholder="LUCKY"> girl in the world. She had got a job <input class="fill-input" placeholder="ONE"> most of her friends could only dream about. It was her <input class="fill-input" placeholder="CALL"> full-time job.</div>
+      </div>
+    </div>
+
+    <!-- HW WORD FORMATION -->
+    <div class="hw-content" id="hw-word">
+      <div class="section" style="border-left-color: #4a90e2;">
+        <h3>🧩 1B7142</h3>
+        <div class="exercise-item">The Grand National is a horse race which is held every year in Liverpool. This <input class="fill-input" placeholder="COMPETE"> involves a four-mile race, during which the horses have to go over 30 fences. The most <input class="fill-input" placeholder="FAME"> horse in the Grand National was called 'Red Rum'. He was the <input class="fill-input" placeholder="WIN"> of the race three times during the 1970s. The race is not only a sporting event but a <input class="fill-input" placeholder="FASHION"> social event too. Men and women wear beautiful clothes, and the tickets to the race are very <input class="fill-input" placeholder="EXPENSE">. The Grand National is broadcast all over the world and around 500 to 600 million people watch it. However, though there are lots of horse racing fans, many people think it's <input class="fill-input" placeholder="FAIR"> and cruel to make the animals race and jump for people's entertainment.</div>
+      </div>
+
+      <div class="section" style="border-left-color: #c86dd7;">
+        <h3>🧩 2BE849</h3>
+        <div class="exercise-item">Piranhas are South American fish. There are lots of scary stories about them. Most people think that piranhas are very <input class="fill-input" placeholder="DANGER">. A <input class="fill-input" placeholder="SCIENCE"> from St Andrews University, Anne Magurran, has recently announced that to call piranhas cruel killers is not fair. They <input class="fill-input" placeholder="USUAL"> eat fish, plants and insects. According to Professor Anne Magurran, piranhas attack people and animals only when they want to defend themselves. However, most travellers strongly <input class="fill-input" placeholder="AGREE"> with this point of view. They recommend keeping away from the water where piranhas live. When the fish attack in groups, it is practically <input class="fill-input" placeholder="POSSIBLE"> to survive. Whatever your opinion of piranhas, this is a <input class="fill-input" placeholder="USE"> piece of advice one should follow.</div>
+      </div>
+
+      <div class="section" style="border-left-color: #ffd93d;">
+        <h3>🧩 52FDB7</h3>
+        <div class="exercise-item">Koalas are cute animals. <input class="fill-input" placeholder="FORTUNATELY">, there are people who want to keep the cute exotic animal as a pet which may put the koala in a really <input class="fill-input" placeholder="DANGER"> situation. The problem is that the koala's diet is very specific. To stay <input class="fill-input" placeholder="HEALTH"> they should only eat eucalyptus leaves. The leaves need to be young and fresh, which means a person who keeps a koala should also have a lot of eucalyptus trees. Andrew Page, a <input class="fill-input" placeholder="SCIENCE"> who has been studying koalas for years, says that it's a bad idea to keep this animal as a pet. According to him, people who try to do it usually have very little <input class="fill-input" placeholder="INFORM"> about koala's lifestyle. And their ignorance can often cost the <input class="fill-input" placeholder="BEAUTY"> animal its life.</div>
+      </div>
+
+      <div class="section" style="border-left-color: #55efc4;">
+        <h3>🧩 B58C9C</h3>
+        <div class="exercise-item">In Moscow, there are approximately 35,000 dogs living on the streets. Some of these animals were born there. Others are just pets that have been abandoned by their owners. For many dogs the city may be a <input class="fill-input" placeholder="HOME"> place to live in. However, scientists were surprised to find out how <input class="fill-input" placeholder="LUCKY"> some animals can adapt to urban life. Some dogs have even learnt to use the city's metro system! We still don't know how the dogs find out when to get off the train. One <input class="fill-input" placeholder="DANGER"> is that they use their excellent sense of smell to recognise the scents of their favourite destinations. Another idea is that they are able to remember the design of stations and find the station they need.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>💜 Удачи в подготовке к ОГЭ! Ты справишься! 💜</footer>
+
+<script>
+  // TABS
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // SUB TABS SPEAKING
+  document.querySelectorAll('.sub-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.sub-content').forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.sub).classList.add('active');
+    });
+  });
+
+  // HW SUB TABS
+  document.querySelectorAll('.hw-sub-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.hw-sub-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.hw-content').forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.hw).classList.add('active');
+    });
+  });
+
+  // GRAMMAR NAV
+  document.querySelectorAll('.grammar-nav button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.grammar-nav button').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.grammar-rule').forEach(r => r.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.rule).classList.add('active');
+    });
+  });
+
+  // READING HIGHLIGHT
+  let currentColor = 'hl-yellow';
+  document.querySelectorAll('.hl-btn').forEach(btn => {
+    btn.addEventListener('click', () => { currentColor = btn.dataset.color; });
+  });
+
+  const readingText = document.getElementById('readingText');
+  if (readingText) {
+    readingText.querySelectorAll('p').forEach(p => {
+      const htmlContent = p.innerHTML;
+      const parts = htmlContent.split(/(<span class="drop-zone"[^>]*>.*?<\/span>)/);
+      let newHtml = '';
+      parts.forEach(part => {
+        if (part.startsWith('<span class="drop-zone"')) { newHtml += part; }
+        else { newHtml += part.split(' ').map(w => { if (w.includes('<')) return w; return `<span class="word">${w}</span>`; }).join(' '); }
+      });
+      p.innerHTML = newHtml;
+    });
+    readingText.addEventListener('click', (e) => {
+      if (e.target.classList.contains('word')) {
+        if (!currentColor) { e.target.classList.remove('hl-yellow','hl-green','hl-pink','hl-blue'); }
+        else { e.target.classList.toggle(currentColor); }
+      }
+    });
+  }
+
+  // DRAG AND DROP HEADINGS
+  let draggedHeading = null;
+  document.querySelectorAll('.heading-chip').forEach(chip => {
+    chip.addEventListener('dragstart', (e) => { draggedHeading = chip; chip.classList.add('dragging'); e.dataTransfer.setData('text/plain', chip.dataset.heading); });
+    chip.addEventListener('dragend', () => { chip.classList.remove('dragging'); });
+  });
+  document.querySelectorAll('.drop-zone').forEach(zone => {
+    zone.addEventListener('dragover', (e) => { e.preventDefault(); if (!zone.classList.contains('filled')) zone.classList.add('over'); });
+    zone.addEventListener('dragleave', () => { zone.classList.remove('over'); });
+    zone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      zone.classList.remove('over');
+      if (!draggedHeading) return;
+      zone.textContent = draggedHeading.textContent;
+      zone.classList.add('filled');
+      draggedHeading.remove();
+      draggedHeading = null;
+    });
+  });
+
+  // T/F/NS
+  document.querySelectorAll('.tfns-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.tfns-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    });
+  });
+
+  // QMARK
+  document.querySelectorAll('.qmark').forEach(mark => {
+    mark.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const li = mark.closest('li');
+      if (mark.textContent === '⬜') { mark.textContent = '✅'; li.classList.add('done'); }
+      else { mark.textContent = '⬜'; li.classList.remove('done'); }
+    });
+  });
+
+  // CHECKLIST MARKERS
+  document.querySelectorAll('.cl-item .mark').forEach(mark => {
+    mark.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const item = mark.closest('.cl-item');
+      if (mark.textContent === '⬜') { mark.textContent = '✅'; item.classList.add('done'); }
+      else { mark.textContent = '⬜'; item.classList.remove('done'); }
+    });
+  });
+
+  // TIMERS
+  const timerIntervals = {};
+  function startTimer(id, seconds) {
+    if (timerIntervals[id]) clearInterval(timerIntervals[id]);
+    let remaining = seconds;
+    updateTimerDisplay(id, remaining);
+    timerIntervals[id] = setInterval(() => {
+      remaining--;
+      if (remaining <= 0) { clearInterval(timerIntervals[id]); remaining = 0; }
+      updateTimerDisplay(id, remaining);
+    }, 1000);
+  }
+  function resetTimer(id, seconds) {
+    if (timerIntervals[id]) clearInterval(timerIntervals[id]);
+    updateTimerDisplay(id, seconds);
+  }
+  function updateTimerDisplay(id, seconds) {
+    const display = document.getElementById(id);
+    const min = Math.floor(seconds / 60);
+    const sec = seconds % 60;
+    display.textContent = `${min}:${sec.toString().padStart(2, '0')}`;
+  }
+
+  // WHEEL OF FORTUNE
+  const questions = [
+    "What is your best friend like?",
+    "Where did you and your friend meet for the first time?",
+    "How often do you see each other?",
+    "What do you like to do together?",
+    "What career is your best friend going to follow?",
+    "What would you recommend to a teenager who wants to be a good friend?",
+    "What do you do to help your parents about the house?",
+    "Who usually does the shopping in your family?",
+    "How do you usually celebrate your birthday?",
+    "What other holidays and special days are celebrated in your family?",
+    "How do you and your friends usually spend your free time?",
+    "Who do you prefer to spend your free time with?",
+    "Who helps you to do your homework?",
+    "How do you usually spend your weekends?",
+    "Who do you usually go shopping with?"
+  ];
+  let availableQuestions = [...questions];
+  let spinning = false;
+  const colors = ['#ff6b9d','#c86dd7','#4a90e2','#ffd93d','#55efc4','#fd79a8','#a29bfe','#fdcb6e','#ff7675','#00b894','#e84393','#6c5ce7','#f39c12','#27ae60','#e74c3c'];
+
+  function drawWheel() {
+    const svg = document.getElementById('wheel');
+    svg.innerHTML = '';
+    if (availableQuestions.length === 0) {
+      svg.innerHTML = '<text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="0.15" font-weight="bold" fill="#4a3f8f">Все вопросы использованы!</text>';
+      return;
+    }
+    const n = availableQuestions.length;
+    const anglePer = 360 / n;
+    for (let i = 0; i < n; i++) {
+      const startAngle = (i * anglePer - 90) * Math.PI / 180;
+      const endAngle = ((i + 1) * anglePer - 90) * Math.PI / 180;
+      const x1 = Math.cos(startAngle), y1 = Math.sin(startAngle);
+      const x2 = Math.cos(endAngle), y2 = Math.sin(endAngle);
+      const largeArc = anglePer > 180 ? 1 : 0;
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', `M 0 0 L ${x1} ${y1} A 1 1 0 ${largeArc} 1 ${x2} ${y2} Z`);
+      path.setAttribute('fill', colors[i % colors.length]);
+      path.setAttribute('stroke', '#fff');
+      path.setAttribute('stroke-width', '0.01');
+      svg.appendChild(path);
+    }
+    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    circle.setAttribute('cx', 0); circle.setAttribute('cy', 0); circle.setAttribute('r', 0.15);
+    circle.setAttribute('fill', '#fff'); circle.setAttribute('stroke', '#c86dd7'); circle.setAttribute('stroke-width', '0.02');
+    svg.appendChild(circle);
+  }
+
+  let currentRotation = 0;
+  function spinWheel() {
+    if (spinning) return;
+    if (availableQuestions.length === 0) {
+      availableQuestions = [...questions];
+      drawWheel();
+      document.getElementById('questionDisplay').textContent = 'Нажми SPIN, чтобы получить вопрос 🎲';
+      return;
+    }
+    spinning = true;
+    document.getElementById('spinBtn').disabled = true;
+    document.getElementById('questionDisplay').classList.remove('show');
+
+    const n = availableQuestions.length;
+    const winnerIndex = Math.floor(Math.random() * n);
+    const anglePer = 360 / n;
+    const targetAngle = 360 - (winnerIndex * anglePer + anglePer / 2);
+    currentRotation += 360 * 5 + ((targetAngle - (currentRotation % 360)) + 360) % 360;
+
+    const wheel = document.getElementById('wheel');
+    wheel.style.transform = `rotate(${currentRotation}deg)`;
+
+    setTimeout(() => {
+      const question = availableQuestions[winnerIndex];
+      const display = document.getElementById('questionDisplay');
+      display.textContent = question;
+      display.classList.add('show');
+      availableQuestions.splice(winnerIndex, 1);
+      spinning = false;
+      document.getElementById('spinBtn').disabled = false;
+      setTimeout(() => { if (availableQuestions.length > 0) drawWheel(); }, 500);
+    }, 4100);
+  }
+
+  drawWheel();
+</script>
+
+</body>
+</html>
