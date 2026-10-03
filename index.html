@@ -1462,7 +1462,9 @@
 <footer>💜 Удачи в подготовке к ОГЭ! Ты справишься! 💜</footer>
 
 <script>
-  // TABS
+  // ============================================================
+  // 1. ОРИГИНАЛЬНАЯ ЛОГИКА (табы, квизы, колесо и т.д.)
+  // ============================================================
   document.querySelectorAll('.tab').forEach(tab => {
     tab.addEventListener('click', () => {
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -1473,7 +1475,6 @@
     });
   });
 
-  // SUB TABS SPEAKING
   document.querySelectorAll('.sub-tab').forEach(tab => {
     tab.addEventListener('click', () => {
       document.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
@@ -1483,7 +1484,6 @@
     });
   });
 
-  // HW SUB TABS
   document.querySelectorAll('.hw-sub-tab').forEach(tab => {
     tab.addEventListener('click', () => {
       document.querySelectorAll('.hw-sub-tab').forEach(t => t.classList.remove('active'));
@@ -1493,7 +1493,6 @@
     });
   });
 
-  // GRAMMAR NAV
   document.querySelectorAll('.grammar-nav button').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.grammar-nav button').forEach(b => b.classList.remove('active'));
@@ -1503,7 +1502,6 @@
     });
   });
 
-  // READING HIGHLIGHT
   let currentColor = 'hl-yellow';
   document.querySelectorAll('.hl-btn').forEach(btn => {
     btn.addEventListener('click', () => { currentColor = btn.dataset.color; });
@@ -1525,11 +1523,11 @@
       if (e.target.classList.contains('word')) {
         if (!currentColor) { e.target.classList.remove('hl-yellow','hl-green','hl-pink','hl-blue'); }
         else { e.target.classList.toggle(currentColor); }
+        saveState(); // Сохраняем выделение
       }
     });
   }
 
-  // DRAG AND DROP HEADINGS
   let draggedHeading = null;
   document.querySelectorAll('.heading-chip').forEach(chip => {
     chip.addEventListener('dragstart', (e) => { draggedHeading = chip; chip.classList.add('dragging'); e.dataTransfer.setData('text/plain', chip.dataset.heading); });
@@ -1546,39 +1544,39 @@
       zone.classList.add('filled');
       draggedHeading.remove();
       draggedHeading = null;
+      saveState(); // Сохраняем перетаскивание
     });
   });
 
-  // T/F/NS
   document.querySelectorAll('.tfns-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const parent = btn.parentElement;
       parent.querySelectorAll('.tfns-btn').forEach(b => b.classList.remove('selected'));
       btn.classList.add('selected');
+      saveState();
     });
   });
 
-  // QMARK
   document.querySelectorAll('.qmark').forEach(mark => {
     mark.addEventListener('click', (e) => {
       e.stopPropagation();
       const li = mark.closest('li');
       if (mark.textContent === '⬜') { mark.textContent = '✅'; li.classList.add('done'); }
       else { mark.textContent = '⬜'; li.classList.remove('done'); }
+      saveState();
     });
   });
 
-  // CHECKLIST MARKERS
   document.querySelectorAll('.cl-item .mark').forEach(mark => {
     mark.addEventListener('click', (e) => {
       e.stopPropagation();
       const item = mark.closest('.cl-item');
       if (mark.textContent === '⬜') { mark.textContent = '✅'; item.classList.add('done'); }
       else { mark.textContent = '⬜'; item.classList.remove('done'); }
+      saveState();
     });
   });
 
-  // TIMERS
   const timerIntervals = {};
   function startTimer(id, seconds) {
     if (timerIntervals[id]) clearInterval(timerIntervals[id]);
@@ -1601,7 +1599,6 @@
     display.textContent = `${min}:${sec.toString().padStart(2, '0')}`;
   }
 
-  // WHEEL OF FORTUNE
   const questions = [
     "What is your best friend like?",
     "Where did you and your friend meet for the first time?",
@@ -1658,6 +1655,7 @@
       availableQuestions = [...questions];
       drawWheel();
       document.getElementById('questionDisplay').textContent = 'Нажми SPIN, чтобы получить вопрос 🎲';
+      saveState();
       return;
     }
     spinning = true;
@@ -1682,10 +1680,169 @@
       spinning = false;
       document.getElementById('spinBtn').disabled = false;
       setTimeout(() => { if (availableQuestions.length > 0) drawWheel(); }, 500);
+      saveState(); // Сохраняем состояние колеса
     }, 4100);
   }
 
   drawWheel();
+
+  // ============================================================
+  // 2. СИСТЕМА СОХРАНЕНИЯ ПРОГРЕССА (localStorage)
+  // ============================================================
+
+  // Собираем весь текущий прогресс в один объект
+  function saveState() {
+    const state = {
+      inputs: Array.from(document.querySelectorAll('input.fill-input, input[type="text"]')).map(el => ({
+        value: el.value,
+        disabled: el.disabled,
+        borderColor: el.style.borderColor
+      })),
+      textareas: Array.from(document.querySelectorAll('.text-area-answer, .notes-area')).map(el => el.value),
+      buttons: Array.from(document.querySelectorAll('.tfns-btn, .mc-btn')).map(el => el.classList.contains('selected')),
+      marks: Array.from(document.querySelectorAll('.qmark, .cl-item .mark')).map(el => ({
+        text: el.textContent,
+        done: el.closest('li, .cl-item') ? el.closest('li, .cl-item').classList.contains('done') : false
+      })),
+      highlights: Array.from(document.querySelectorAll('.reading-text .word')).map(el => el.className),
+      dropZones: Array.from(document.querySelectorAll('.drop-zone')).map(el => ({
+        text: el.textContent,
+        filled: el.classList.contains('filled')
+      })),
+      tabs: {
+        main: document.querySelector('.tab.active')?.dataset.tab,
+        sub: document.querySelector('.sub-tab.active')?.dataset.sub,
+        hw: document.querySelector('.hw-sub-tab.active')?.dataset.hw,
+        grammar: document.querySelector('.grammar-nav button.active')?.dataset.rule
+      },
+      availableQuestions: typeof availableQuestions !== 'undefined' ? [...availableQuestions] : []
+    };
+    localStorage.setItem('oge_block_a_progress', JSON.stringify(state));
+  }
+
+  // Восстанавливаем прогресс при загрузке страницы
+  function loadState() {
+    const saved = localStorage.getItem('oge_block_a_progress');
+    if (!saved) return;
+    try {
+      const state = JSON.parse(saved);
+
+      // Inputs
+      document.querySelectorAll('input.fill-input, input[type="text"]').forEach((el, i) => {
+        if (state.inputs[i]) {
+          el.value = state.inputs[i].value;
+          el.disabled = state.inputs[i].disabled;
+          el.style.borderColor = state.inputs[i].borderColor;
+        }
+      });
+
+      // Textareas
+      document.querySelectorAll('.text-area-answer, .notes-area').forEach((el, i) => {
+        if (state.textareas[i] !== undefined) el.value = state.textareas[i];
+      });
+
+      // Buttons
+      document.querySelectorAll('.tfns-btn, .mc-btn').forEach((el, i) => {
+        if (state.buttons[i]) el.classList.add('selected');
+      });
+
+      // Marks (галочки)
+      document.querySelectorAll('.qmark, .cl-item .mark').forEach((el, i) => {
+        if (state.marks[i]) {
+          el.textContent = state.marks[i].text;
+          const parent = el.closest('li, .cl-item');
+          if (parent) {
+            if (state.marks[i].done) parent.classList.add('done');
+            else parent.classList.remove('done');
+          }
+        }
+      });
+
+      // Highlights (выделение слов)
+      document.querySelectorAll('.reading-text .word').forEach((el, i) => {
+        if (state.highlights[i]) el.className = state.highlights[i];
+      });
+
+      // Drop Zones
+      document.querySelectorAll('.drop-zone').forEach((el, i) => {
+        if (state.dropZones[i]) {
+          el.textContent = state.dropZones[i].text;
+          if (state.dropZones[i].filled) el.classList.add('filled');
+        }
+      });
+
+      // Tabs
+      if (state.tabs) {
+        if (state.tabs.main) {
+          document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+          document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+          const mainTab = document.querySelector(`.tab[data-tab="${state.tabs.main}"]`);
+          if (mainTab) {
+            mainTab.classList.add('active');
+            const content = document.getElementById(state.tabs.main);
+            if (content) content.classList.add('active');
+          }
+        }
+        if (state.tabs.sub) {
+          document.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+          document.querySelectorAll('.sub-content').forEach(c => c.classList.remove('active'));
+          const subTab = document.querySelector(`.sub-tab[data-sub="${state.tabs.sub}"]`);
+          if (subTab) {
+            subTab.classList.add('active');
+            const content = document.getElementById(state.tabs.sub);
+            if (content) content.classList.add('active');
+          }
+        }
+        if (state.tabs.hw) {
+          document.querySelectorAll('.hw-sub-tab').forEach(t => t.classList.remove('active'));
+          document.querySelectorAll('.hw-content').forEach(c => c.classList.remove('active'));
+          const hwTab = document.querySelector(`.hw-sub-tab[data-hw="${state.tabs.hw}"]`);
+          if (hwTab) {
+            hwTab.classList.add('active');
+            const content = document.getElementById(state.tabs.hw);
+            if (content) content.classList.add('active');
+          }
+        }
+        if (state.tabs.grammar) {
+          document.querySelectorAll('.grammar-nav button').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('.grammar-rule').forEach(r => r.classList.remove('active'));
+          const gBtn = document.querySelector(`.grammar-nav button[data-rule="${state.tabs.grammar}"]`);
+          if (gBtn) {
+            gBtn.classList.add('active');
+            const content = document.getElementById(state.tabs.grammar);
+            if (content) content.classList.add('active');
+          }
+        }
+      }
+
+      // Wheel
+      if (state.availableQuestions && state.availableQuestions.length > 0) {
+        availableQuestions = [...state.availableQuestions];
+        drawWheel();
+      }
+    } catch (e) {
+      console.warn('Ошибка при восстановлении прогресса:', e);
+    }
+  }
+
+  // Автосохранение при любом изменении на сайте
+  document.addEventListener('input', saveState);
+  document.addEventListener('change', saveState);
+
+  // Восстанавливаем прогресс, когда страница загрузилась
+  window.addEventListener('load', () => {
+    loadState();
+    // Небольшая задержка, чтобы другие скрипты успели инициализироваться
+    setTimeout(loadState, 300);
+  });
+
+  // Функция сброса (вызывается кнопкой)
+  window.resetProgress = function() {
+    if (confirm('Вы уверены, что хотите сбросить весь прогресс? Это действие нельзя отменить.')) {
+      localStorage.removeItem('oge_block_a_progress');
+      location.reload();
+    }
+  };
 </script>
 
 </body>
